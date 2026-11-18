@@ -176,3 +176,7 @@ MIT; see `LICENSE`. The crates the editor and the MCP server are built from, and
 ## History
 
 Until November 2026 AVS was a TypeScript project: a React editor that ran only under the Vite dev server, an MCP server started with `node --import tsx`, and an ffmpeg renderer separate from the browser preview. It was rebuilt in Rust to remove a class of defects found in an audit: the editor saved whole projects and could overwrite agent edits; a split ignored clip speed; a multi-clip overwrite removed unrelated clips; mixing N audio tracks lowered each to 1/N; exports dropped captions when ffmpeg lacked `drawtext`; a cancelled export could delete an earlier output; and the capability schemas had no generator. The tool names and input schemas were kept, with these changes: `migrate_legacy_project_session` was removed, `set_project_settings` and `set_track_properties` were added, plan operations may be any edit, results use the `{ok, tool, ...}` shape, and renders go to the project library instead of the plugin folder. The TypeScript source is not part of this repository's public history, which starts at the Rust version.
+
+## Behind the scenes
+
+The owner wrote up how the Rust rebuild went, as watched from the next chair: [Fable 5.2に丸投げしたら、Opus 5.5の上位互換だった](https://mlabo.org/15256/) (note: the page is in Japanese).
