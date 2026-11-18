@@ -1,0 +1,26 @@
+{
+  "$id": "agent-video-studio/trim-clip-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/trim_clip call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "revision": {
+      "description": "Project session revision after the call.",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "tool": {
+      "const": "trim_clip"
+    }
+  },
+  "required": [
+    "ok",
+    "tool",
+    "revision"
+  ],
+  "title": "trim_clip output",
+  "type": "object"
+}

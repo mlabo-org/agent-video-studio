@@ -1,0 +1,22 @@
+[package]
+name = "avs-mcp"
+version.workspace = true
+edition.workspace = true
+rust-version = "1.89"
+license.workspace = true
+
+[[bin]]
+name = "agent-video-studio-mcp"
+path = "src/main.rs"
+
+[dependencies]
+avs-core = { path = "../avs-core" }
+avs-session = { path = "../avs-session" }
+avs-render = { path = "../avs-render" }
+avs-handoff = { path = "../avs-handoff" }
+serde.workspace = true
+serde_json.workspace = true
+sha2 = "0.10"
+
+[dev-dependencies]
+tempfile = "3"

@@ -1,0 +1,32 @@
+{
+  "$id": "agent-video-studio/search-media-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/search_media.",
+  "properties": {
+    "kind": {
+      "enum": [
+        "video",
+        "audio",
+        "image",
+        "sequence"
+      ],
+      "type": "string"
+    },
+    "limit": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "query": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Search Media input",
+  "type": "object"
+}

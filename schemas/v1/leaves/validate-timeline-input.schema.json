@@ -1,0 +1,8 @@
+{
+  "$id": "agent-video-studio/validate-timeline-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exact arguments accepted by agent_video_studio/validate_timeline.",
+  "properties": {},
+  "title": "Validate Timeline input",
+  "type": "object"
+}

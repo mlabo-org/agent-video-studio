@@ -1,0 +1,352 @@
+[
+ {
+  "wait": 1000
+ },
+ "waitIdle",
+ {
+  "click": {
+   "target": {
+    "clip": "clip-1"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "20-inspector"
+ },
+ {
+  "scroll": {
+   "target": {
+    "widget": "inspector:posx"
+   },
+   "dx": 0,
+   "dy": -200
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "drag": {
+   "from": {
+    "widget": "inspector:opacity"
+   },
+   "to": {
+    "widget": "inspector:opacity",
+    "dx": -100
+   }
+  }
+ },
+ {
+  "expect": {
+   "revision": 14,
+   "clip": {
+    "id": "clip-1",
+    "properties": {
+     "opacity": 0.5
+    }
+   }
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "widget": "inspector:scale"
+   },
+   "to": {
+    "widget": "inspector:scale",
+    "dx": 40
+   }
+  }
+ },
+ {
+  "expect": {
+   "revision": 15,
+   "clip": {
+    "id": "clip-1",
+    "properties": {
+     "position": {
+      "x": 960,
+      "y": 540
+     }
+    }
+   }
+  }
+ },
+ "waitIdle",
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "21-transform"
+ },
+ {
+  "key": "v"
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "muted": true
+   }
+  }
+ },
+ {
+  "key": "cmd+c"
+ },
+ {
+  "click": {
+   "target": {
+    "time": 18.0
+   }
+  }
+ },
+ {
+  "key": "cmd+v"
+ },
+ {
+  "expect": {
+   "clipCount": 9,
+   "noError": true,
+   "playhead": 28.0
+  }
+ },
+ {
+  "key": "alt+c"
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "caption-2",
+    "start": 28.0
+   },
+   "selected": [
+    "caption-2"
+   ]
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "caption-text"
+   }
+  }
+ },
+ {
+  "key": "cmd+a"
+ },
+ {
+  "type": "\u30c6\u30b9\u30c8\u5b57\u5e55 Test"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "viewer"
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "caption-2",
+    "caption": "\u30c6\u30b9\u30c8\u5b57\u5e55 Test"
+   }
+  }
+ },
+ {
+  "screenshot": "22-caption"
+ },
+ {
+  "selectMedia": "portrait.mp4"
+ },
+ {
+  "key": "q"
+ },
+ {
+  "expect": {
+   "clipCount": 11,
+   "noError": true
+  }
+ },
+ {
+  "selectMedia": "music.m4a"
+ },
+ {
+  "key": "e"
+ },
+ {
+  "expect": {
+   "clipCount": 12,
+   "noError": true
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-3",
+    "at": "end"
+   },
+   "to": {
+    "clip": "clip-3",
+    "at": "end",
+    "dx": -133
+   }
+  }
+ },
+ {
+  "key": "t"
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-3"
+   },
+   "to": {
+    "clip": "clip-3",
+    "dx": -66.5
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "sourceStart": 1.0,
+    "start": 10.0
+   }
+  }
+ },
+ {
+  "key": "a"
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "key": "shift+z"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "23-after-media"
+ },
+ {
+  "key": "home"
+ },
+ {
+  "key": "space"
+ },
+ {
+  "wait": 1500
+ },
+ {
+  "screenshot": "24-playing"
+ },
+ {
+  "key": "k"
+ },
+ {
+  "expect": {
+   "playing": false,
+   "playheadAtLeast": 0.8
+  }
+ },
+ {
+  "key": "l"
+ },
+ {
+  "key": "l"
+ },
+ {
+  "wait": 1000
+ },
+ {
+  "key": "k"
+ },
+ {
+  "expect": {
+   "playheadAtLeast": 2.5
+  }
+ },
+ {
+  "key": "j"
+ },
+ {
+  "wait": 800
+ },
+ {
+  "key": "k"
+ },
+ {
+  "expect": {
+   "playing": false
+  }
+ },
+ {
+  "key": "cmd+/"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "25-help"
+ },
+ {
+  "key": "cmd+/"
+ },
+ {
+  "key": "cmd+,"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "26-settings"
+ },
+ {
+  "key": "cmd+,"
+ },
+ {
+  "rightClick": {
+   "target": {
+    "clip": "clip-3"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "27-context"
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "theme": "light"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "screenshot": "28-light"
+ },
+ {
+  "language": "en"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "screenshot": "29-english"
+ },
+ {
+  "dump": "29-state"
+ }
+]

@@ -1,0 +1,8 @@
+{
+  "$id": "agent-video-studio/list-recent-project-workspaces-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exact arguments accepted by agent_video_studio/list_recent_project_workspaces.",
+  "properties": {},
+  "title": "List Recent Project Workspaces input",
+  "type": "object"
+}

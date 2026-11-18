@@ -1,0 +1,2628 @@
+{
+  "manifest": {
+    "manifestVersion": "local-capability-manifest/v1",
+    "publisher": "suzuki-makoto",
+    "packageKind": "plugin",
+    "packageId": "agent-video-studio",
+    "descriptorVersion": "0.1.0"
+  },
+  "mcpServer": "agent_video_studio",
+  "coordinator": {
+    "capability": {
+      "leafId": "coordinate-agent-video-studio",
+      "title": "Coordinate Agent Video Studio",
+      "description": "Host-owned AVS workflow coordination across the exact public MCP leaves for editable CodexVideo handoff, auto-edit planning and application, timeline operations, validation, local render, and optional UI inspection.",
+      "executionClass": "host_coordinator",
+      "runtimeBinding": {
+        "kind": "host_coordinator",
+        "instruction": "Coordinate the requested AVS workflow in the host agent (Codex or Claude Code). Follow the package's public Agent Video Studio coordinator contract, call only exact available agent_video_studio MCP tools, preserve returned project/session/revision/media/track/clip IDs, and report actual downstream results. Do not claim that the broker or AVS server called another server, do not perform STT/TTS/provider generation/publishing/authentication, and stop when required authority, confirmation, target binding, or exact descriptor pins are unavailable."
+      },
+      "authorityRequests": [],
+      "artifactRoots": [
+        "."
+      ],
+      "inputSchema": {
+        "schemaVersion": "local-capability-schema/v1",
+        "schemaId": "agent-video-studio/coordinate-agent-video-studio-input/v1",
+        "path": "schemas/v1/leaves/coordinate-agent-video-studio-input.schema.json"
+      },
+      "outputSchema": {
+        "schemaVersion": "local-capability-schema/v1",
+        "schemaId": "agent-video-studio/coordinate-agent-video-studio-output/v1",
+        "path": "schemas/v1/leaves/coordinate-agent-video-studio-output.schema.json"
+      },
+      "inputPorts": [
+        {
+          "name": "codexvideo-handoff",
+          "semanticType": "avs/codexvideo-handoff",
+          "schemaId": "avs.codexvideo-handoff.v1",
+          "required": false
+        },
+        {
+          "name": "auto-edit-plan",
+          "semanticType": "avs/auto-edit-plan",
+          "schemaId": "avs.auto-edit-plan.v1",
+          "required": false
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "plan-inspection",
+          "semanticType": "avs/auto-edit-plan-inspection",
+          "schemaId": "agent-video-studio/auto-edit-plan-inspection/v1",
+          "required": false
+        },
+        {
+          "name": "preview-video",
+          "semanticType": "video/mp4",
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "required": false
+        },
+        {
+          "name": "final-video",
+          "semanticType": "video/mp4",
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "required": false
+        }
+      ]
+    },
+    "inputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "agent-video-studio/coordinate-agent-video-studio-input/v1",
+      "title": "Agent Video Studio coordinator input",
+      "description": "Complete host-owned goal and routing context for coordinating the public AVS MCP surface.",
+      "type": "object",
+      "required": [
+        "goal"
+      ],
+      "properties": {
+        "goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requestedRoute": {
+          "enum": [
+            "codexvideo-handoff",
+            "auto-edit-plan",
+            "timeline-edit",
+            "validate",
+            "preview",
+            "final-export",
+            "ui-inspection"
+          ]
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "handoffManifestPath": {
+          "type": "string"
+        },
+        "autoEditPlan": {
+          "type": "object",
+          "description": "Complete versioned AVS auto-edit plan.",
+          "required": [
+            "schema",
+            "planId",
+            "producer",
+            "target",
+            "operations"
+          ],
+          "properties": {
+            "schema": {
+              "const": "avs.auto-edit-plan.v1"
+            },
+            "planId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "producer": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                },
+                "jobId": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "target": {
+              "type": "object",
+              "required": [
+                "projectId",
+                "baseRevision"
+              ],
+              "properties": {
+                "projectId": {
+                  "type": "string"
+                },
+                "baseRevision": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "operations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "operationId",
+                  "type"
+                ],
+                "properties": {
+                  "operationId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "minItems": 1
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "outputPath": {
+          "type": "string"
+        },
+        "requireManualUi": {
+          "type": "boolean"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "jsonValue": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "outputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "agent-video-studio/coordinate-agent-video-studio-output/v1",
+      "title": "Agent Video Studio coordinator output",
+      "description": "Complete host-authored coordination record; it reports exact AVS MCP actions and results without claiming the broker or AVS server invoked another server.",
+      "type": "object",
+      "required": [
+        "goal",
+        "status",
+        "actions",
+        "results",
+        "artifacts"
+      ],
+      "properties": {
+        "goal": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "succeeded",
+            "stopped",
+            "failed"
+          ]
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "mcpServer",
+              "tool",
+              "arguments"
+            ],
+            "properties": {
+              "mcpServer": {
+                "const": "agent_video_studio"
+              },
+              "tool": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "tool",
+              "ok",
+              "summary"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string"
+              },
+              "ok": {
+                "type": "boolean"
+              },
+              "summary": {
+                "type": "string"
+              },
+              "session": {
+                "$ref": "#/$defs/sessionReference"
+              },
+              "validation": {
+                "$ref": "#/$defs/validation"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "path",
+              "semanticType"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "project-session",
+                  "media",
+                  "preview-video",
+                  "final-video",
+                  "plan",
+                  "inspection"
+                ]
+              },
+              "path": {
+                "type": "string"
+              },
+              "semanticType": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "session": {
+          "$ref": "#/$defs/sessionReference"
+        },
+        "validation": {
+          "$ref": "#/$defs/validation"
+        },
+        "stopReason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "jsonValue": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            }
+          ]
+        },
+        "resolution": {
+          "type": "object",
+          "description": "Video resolution.",
+          "required": [
+            "width",
+            "height"
+          ],
+          "properties": {
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "sessionReference": {
+          "type": "object",
+          "description": "Exact persisted AVS project-session revision.",
+          "required": [
+            "revision",
+            "updatedAt"
+          ],
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "updatedAt": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "mediaAsset": {
+          "type": "object",
+          "description": "Registered AVS media asset.",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "durationSeconds"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "video",
+                "audio",
+                "image",
+                "sequence"
+              ]
+            },
+            "durationSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "source": {
+              "type": "string"
+            },
+            "thumbnail": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "transcript": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "clipProperties": {
+          "type": "object",
+          "description": "Editable AVS clip properties.",
+          "required": [],
+          "properties": {
+            "position": {
+              "type": "object",
+              "required": [
+                "x",
+                "y"
+              ],
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "rotationDegrees": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "crop": {
+              "type": "object",
+              "required": [
+                "left",
+                "right",
+                "top",
+                "bottom"
+              ],
+              "properties": {
+                "left": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "right": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "top": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "bottom": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "additionalProperties": false
+            },
+            "volumeDb": {
+              "type": "number"
+            },
+            "muted": {
+              "type": "boolean"
+            },
+            "fadeInSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fadeOutSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "speed": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "captionStyle": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "placement": {
+                  "enum": [
+                    "lower-third",
+                    "center",
+                    "title",
+                    "subtitle"
+                  ]
+                },
+                "color": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "clip": {
+          "type": "object",
+          "description": "Stable AVS timeline clip.",
+          "required": [
+            "id",
+            "trackId",
+            "kind",
+            "name",
+            "startSeconds",
+            "durationSeconds",
+            "properties"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "trackId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "enum": [
+                "media",
+                "caption"
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "startSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "durationSeconds": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "mediaId": {
+              "type": "string"
+            },
+            "sourceStartSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "properties": {
+              "$ref": "#/$defs/clipProperties"
+            },
+            "caption": {
+              "type": "object",
+              "required": [
+                "text"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "speaker": {
+                  "type": "string"
+                },
+                "language": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "track": {
+          "type": "object",
+          "description": "AVS timeline track.",
+          "required": [
+            "id",
+            "name",
+            "kind",
+            "clips"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "video",
+                "audio",
+                "caption"
+              ]
+            },
+            "locked": {
+              "type": "boolean"
+            },
+            "muted": {
+              "type": "boolean"
+            },
+            "clips": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/clip"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "toolCall": {
+          "type": "object",
+          "description": "Persisted AVS agent-tool history record.",
+          "required": [
+            "id",
+            "toolName",
+            "status",
+            "summary"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "toolName": {
+              "type": "string"
+            },
+            "status": {
+              "enum": [
+                "success",
+                "error",
+                "running"
+              ]
+            },
+            "summary": {
+              "type": "string"
+            },
+            "input": {
+              "$ref": "#/$defs/jsonValue"
+            },
+            "output": {
+              "$ref": "#/$defs/jsonValue"
+            },
+            "error": {
+              "type": "string"
+            },
+            "durationMs": {
+              "type": "number",
+              "minimum": 0
+            },
+            "createdAt": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "timelineProject": {
+          "type": "object",
+          "description": "Complete persisted AVS timeline project.",
+          "required": [
+            "id",
+            "title",
+            "fps",
+            "resolution",
+            "sampleRate",
+            "media",
+            "tracks",
+            "toolHistory"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string"
+            },
+            "fps": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "resolution": {
+              "$ref": "#/$defs/resolution"
+            },
+            "sampleRate": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "playheadSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "media": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mediaAsset"
+              }
+            },
+            "tracks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/track"
+              }
+            },
+            "toolHistory": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/toolCall"
+              }
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "timelineSnapshot": {
+          "type": "object",
+          "description": "Complete current AVS timeline snapshot.",
+          "required": [
+            "projectId",
+            "title",
+            "fps",
+            "resolution",
+            "sampleRate",
+            "durationSeconds",
+            "tracks"
+          ],
+          "properties": {
+            "projectId": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "fps": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "resolution": {
+              "$ref": "#/$defs/resolution"
+            },
+            "sampleRate": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "playheadSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "durationSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "tracks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/track"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "issue": {
+          "type": "object",
+          "description": "AVS validation issue.",
+          "required": [
+            "severity",
+            "code",
+            "message"
+          ],
+          "properties": {
+            "severity": {
+              "enum": [
+                "error",
+                "warning"
+              ]
+            },
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "trackId": {
+              "type": "string"
+            },
+            "clipId": {
+              "type": "string"
+            },
+            "mediaId": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "inspection": {
+          "type": "object",
+          "description": "Agent-readable AVS timeline inspection.",
+          "required": [
+            "projectId",
+            "title",
+            "fps",
+            "resolution",
+            "durationSeconds",
+            "mediaCount",
+            "trackCount",
+            "clipCount",
+            "captionCount",
+            "toolCallCount",
+            "tracks",
+            "mediaUsage",
+            "issues"
+          ],
+          "properties": {
+            "projectId": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "fps": {
+              "type": "number"
+            },
+            "resolution": {
+              "$ref": "#/$defs/resolution"
+            },
+            "durationSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "mediaCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "trackCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "clipCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "captionCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "toolCallCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tracks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "kind",
+                  "clipCount",
+                  "firstStartSeconds",
+                  "lastEndSeconds",
+                  "durationSeconds"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "caption"
+                    ]
+                  },
+                  "clipCount": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "firstStartSeconds": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "lastEndSeconds": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "durationSeconds": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "mediaUsage": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "mediaId",
+                  "clipIds",
+                  "totalDurationSeconds"
+                ],
+                "properties": {
+                  "mediaId": {
+                    "type": "string"
+                  },
+                  "clipIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "totalDurationSeconds": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "validation": {
+          "type": "object",
+          "description": "Complete AVS timeline validation.",
+          "required": [
+            "ok",
+            "errors",
+            "warnings",
+            "issues"
+          ],
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            },
+            "warnings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            },
+            "issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "projectSummary": {
+          "type": "object",
+          "description": "Project I/O workspace summary.",
+          "required": [
+            "id",
+            "title",
+            "revision",
+            "updatedAt",
+            "mediaCount",
+            "trackCount",
+            "clipCount"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "mediaCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "trackCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "clipCount": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "settings": {
+          "type": "object",
+          "description": "Sanitized AVS Project Library settings.",
+          "required": [
+            "schemaVersion",
+            "revision",
+            "dataDirectory",
+            "source",
+            "writable"
+          ],
+          "properties": {
+            "schemaVersion": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "dataDirectory": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "default",
+                "config",
+                "env"
+              ]
+            },
+            "writable": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "pathState": {
+          "type": "object",
+          "required": [
+            "path",
+            "exists",
+            "isDirectory",
+            "writable"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "exists": {
+              "type": "boolean"
+            },
+            "isDirectory": {
+              "type": "boolean"
+            },
+            "writable": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "targetState": {
+          "type": "object",
+          "required": [
+            "input",
+            "path",
+            "exists",
+            "isDirectory",
+            "writable"
+          ],
+          "properties": {
+            "input": {
+              "type": "string"
+            },
+            "path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "exists": {
+              "type": "boolean"
+            },
+            "isDirectory": {
+              "type": "boolean"
+            },
+            "writable": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "blocker": {
+          "type": "object",
+          "required": [
+            "code",
+            "message"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "warning": {
+          "type": "object",
+          "required": [
+            "code",
+            "message"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "projectIoInspection": {
+          "type": "object",
+          "description": "Complete Project I/O target inspection.",
+          "required": [
+            "schemaVersion",
+            "target",
+            "dataDirectory",
+            "sessionFileName",
+            "sessionExists",
+            "existingProject",
+            "blockers"
+          ],
+          "properties": {
+            "schemaVersion": {
+              "const": 1
+            },
+            "target": {
+              "$ref": "#/$defs/targetState"
+            },
+            "dataDirectory": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/pathState"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sessionFileName": {
+              "type": "string"
+            },
+            "sessionExists": {
+              "type": "boolean"
+            },
+            "existingProject": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/projectSummary"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "blockers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/blocker"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "recentWorkspace": {
+          "type": "object",
+          "required": [
+            "dataDirectory",
+            "firstOpenedAt",
+            "lastOpenedAt",
+            "current",
+            "reachable",
+            "reachability",
+            "summary"
+          ],
+          "properties": {
+            "dataDirectory": {
+              "type": "string"
+            },
+            "firstOpenedAt": {
+              "type": "string"
+            },
+            "lastOpenedAt": {
+              "type": "string"
+            },
+            "current": {
+              "type": "boolean"
+            },
+            "reachable": {
+              "type": "boolean"
+            },
+            "reachability": {
+              "enum": [
+                "available",
+                "data_directory_missing",
+                "data_directory_not_directory",
+                "session_missing",
+                "session_not_file",
+                "session_invalid",
+                "entry_invalid"
+              ]
+            },
+            "summary": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/projectSummary"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recentList": {
+          "type": "object",
+          "required": [
+            "schemaVersion",
+            "revision",
+            "entries"
+          ],
+          "properties": {
+            "schemaVersion": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "entries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/recentWorkspace"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "renderSummary": {
+          "type": "object",
+          "required": [
+            "trackCount",
+            "clipCount",
+            "mediaClipCount",
+            "captionClipCount"
+          ],
+          "properties": {
+            "trackCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "clipCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "mediaClipCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "captionClipCount": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "renderSource": {
+          "type": "object",
+          "required": [
+            "inputIndex",
+            "clipId",
+            "trackId",
+            "mediaId",
+            "mediaType",
+            "source",
+            "absolutePath",
+            "startSeconds",
+            "durationSeconds",
+            "endSeconds",
+            "sourceStartSeconds",
+            "sourceDurationSeconds"
+          ],
+          "properties": {
+            "inputIndex": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "clipId": {
+              "type": "string"
+            },
+            "trackId": {
+              "type": "string"
+            },
+            "mediaId": {
+              "type": "string"
+            },
+            "mediaType": {
+              "enum": [
+                "video",
+                "image",
+                "audio"
+              ]
+            },
+            "source": {
+              "type": "string"
+            },
+            "absolutePath": {
+              "type": "string"
+            },
+            "startSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "durationSeconds": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "endSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "sourceStartSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "sourceDurationSeconds": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "renderMetadata": {
+          "type": "object",
+          "required": [
+            "usedRealVideo",
+            "usedRealImage",
+            "usedRealAudio",
+            "externalUploads",
+            "providerCalls",
+            "captionRendering"
+          ],
+          "properties": {
+            "usedRealVideo": {
+              "type": "boolean"
+            },
+            "usedRealImage": {
+              "type": "boolean"
+            },
+            "usedRealAudio": {
+              "type": "boolean"
+            },
+            "externalUploads": {
+              "const": false
+            },
+            "providerCalls": {
+              "const": false
+            },
+            "captionRendering": {
+              "type": "object",
+              "required": [
+                "status",
+                "requestedClipCount",
+                "renderedClipCount",
+                "skippedClipCount",
+                "drawtextAvailable",
+                "clipIds"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "rendered",
+                    "skipped-drawtext-unavailable",
+                    "none"
+                  ]
+                },
+                "requestedClipCount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "renderedClipCount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "skippedClipCount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "drawtextAvailable": {
+                  "type": "boolean"
+                },
+                "clipIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "warning": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "const": "FFMPEG_DRAWTEXT_UNAVAILABLE"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "renderResult": {
+          "type": "object",
+          "description": "Complete local FFmpeg render result.",
+          "required": [
+            "projectId",
+            "title",
+            "outputPath",
+            "relativeOutputPath",
+            "durationSeconds",
+            "timelineDurationSeconds",
+            "summary",
+            "externalUploads",
+            "mode",
+            "renderer",
+            "sources",
+            "metadata",
+            "ffmpegCommand"
+          ],
+          "properties": {
+            "projectId": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "outputPath": {
+              "type": "string"
+            },
+            "relativeOutputPath": {
+              "type": "string"
+            },
+            "durationSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "timelineDurationSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "summary": {
+              "$ref": "#/$defs/renderSummary"
+            },
+            "externalUploads": {
+              "const": false
+            },
+            "mode": {
+              "enum": [
+                "local-preview",
+                "local-final-export"
+              ]
+            },
+            "renderer": {
+              "const": "ffmpeg-local-project-library-media"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/renderSource"
+              }
+            },
+            "metadata": {
+              "$ref": "#/$defs/renderMetadata"
+            },
+            "ffmpegCommand": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "renderJob": {
+          "type": "object",
+          "description": "Process-local AVS final-export job snapshot.",
+          "required": [
+            "schemaVersion",
+            "id",
+            "status",
+            "active",
+            "createdAt",
+            "updatedAt",
+            "session",
+            "target"
+          ],
+          "properties": {
+            "schemaVersion": {
+              "const": 1
+            },
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "enum": [
+                "running",
+                "cancelling",
+                "succeeded",
+                "failed",
+                "cancelled"
+              ]
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "completedAt": {
+              "type": "string"
+            },
+            "session": {
+              "$ref": "#/$defs/sessionReference"
+            },
+            "target": {
+              "type": "object",
+              "required": [
+                "outputPath",
+                "relativeOutputPath",
+                "durationSeconds",
+                "timelineDurationSeconds"
+              ],
+              "properties": {
+                "outputPath": {
+                  "type": "string"
+                },
+                "relativeOutputPath": {
+                  "type": "string"
+                },
+                "durationSeconds": {
+                  "type": "number"
+                },
+                "timelineDurationSeconds": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            "progress": {
+              "type": "object",
+              "required": [
+                "phase",
+                "status",
+                "outTimeSeconds",
+                "durationSeconds",
+                "ratio",
+                "percentage"
+              ],
+              "properties": {
+                "phase": {
+                  "const": "ffmpeg"
+                },
+                "status": {
+                  "enum": [
+                    "running",
+                    "finished"
+                  ]
+                },
+                "outTimeSeconds": {
+                  "type": "number"
+                },
+                "durationSeconds": {
+                  "type": "number"
+                },
+                "ratio": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "frame": {
+                  "type": "number"
+                },
+                "fps": {
+                  "type": "number"
+                },
+                "totalSizeBytes": {
+                  "type": "number"
+                },
+                "speed": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            },
+            "result": {
+              "$ref": "#/$defs/renderResult"
+            },
+            "error": {
+              "type": "object",
+              "required": [
+                "code",
+                "message"
+              ],
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "cancellation": {
+              "type": "object",
+              "required": [
+                "requestedAt"
+              ],
+              "properties": {
+                "requestedAt": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "completedAt": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "outputPath": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "leaves": {
+    "get_timeline": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "list_tracks": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "get_media": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "collect_clips_in_range": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "get_project_session_status": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "inspect_timeline": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "validate_timeline": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "plan_silence_removal": {
+      "authorityRequests": [],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "name": "auto-edit-plan",
+          "semanticType": "avs/auto-edit-plan",
+          "schemaId": "avs.auto-edit-plan.v1",
+          "required": false
+        }
+      ]
+    },
+    "inspect_auto_edit_plan": {
+      "authorityRequests": [],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [
+        {
+          "name": "auto-edit-plan",
+          "semanticType": "avs/auto-edit-plan",
+          "schemaId": "avs.auto-edit-plan.v1",
+          "required": false
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "plan-inspection",
+          "semanticType": "avs/auto-edit-plan-inspection",
+          "schemaId": "agent-video-studio/auto-edit-plan-inspection/v1",
+          "required": false
+        }
+      ]
+    },
+    "apply_auto_edit_plan": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [
+        {
+          "name": "plan-inspection",
+          "semanticType": "avs/auto-edit-plan-inspection",
+          "schemaId": "agent-video-studio/auto-edit-plan-inspection/v1",
+          "required": false
+        }
+      ],
+      "outputPorts": []
+    },
+    "get_project_library_settings": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "get_project_io_status": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "list_recent_project_workspaces": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "forget_recent_project_workspace": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "inspect_project_library_target": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Inspect the exact local Project I/O target supplied by the caller."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "inspect_project_workspace_delete": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Inspect the exact local Project I/O target supplied by the caller."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "inspect_project_workspace_restore": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Inspect the exact local Project I/O target supplied by the caller."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "create_project_session": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "switch_project_library": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_project_workspace": {
+      "authorityRequests": [
+        {
+          "authority": "reversible_workspace_delete",
+          "reason": "Rename the exact inspected non-current AVS data directory to its reversible .deleted destination."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "restore_project_workspace": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_project_library_settings": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "reset_project_library_settings": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "search_media": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "register_media": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "import_media_file": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [
+        {
+          "name": "local-media",
+          "semanticType": "media/local-file",
+          "schemaId": "agent-video-studio/local-media-file/v1",
+          "required": false
+        }
+      ],
+      "outputPorts": []
+    },
+    "import_media_file_to_timeline": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [
+        {
+          "name": "local-media",
+          "semanticType": "media/local-file",
+          "schemaId": "agent-video-studio/local-media-file/v1",
+          "required": false
+        }
+      ],
+      "outputPorts": []
+    },
+    "import_handoff_manifest": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [
+        {
+          "name": "codexvideo-handoff",
+          "semanticType": "avs/codexvideo-handoff",
+          "schemaId": "avs.codexvideo-handoff.v1",
+          "required": false
+        }
+      ],
+      "outputPorts": []
+    },
+    "import_codexvideo_job": {
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [
+        {
+          "name": "codexvideo-handoff",
+          "semanticType": "avs/codexvideo-handoff",
+          "schemaId": "avs.codexvideo-handoff.v1",
+          "required": false
+        }
+      ],
+      "outputPorts": []
+    },
+    "delete_media": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "add_clips": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "add_track": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_clips": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "lift_range": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "extract_range": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "ripple_delete_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "close_gap_at_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_track": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "reorder_track": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "move_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "move_clips": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "trim_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "ripple_trim_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "slip_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "slide_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "roll_edit": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "trim_clip_to_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "trim_clips_to_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_left_at_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_clips_left_at_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_right_at_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "delete_clips_right_at_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "split_clip": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "blade_at_time": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_clip_properties": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_clip_audio": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_track_muted": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "undo_project": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the undo or redo as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "redo_project": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the undo or redo as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_caption_text": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "add_captions": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "render_preview": {
+      "authorityRequests": [
+        {
+          "authority": "local_media_process",
+          "reason": "Run the local FFmpeg renderer without network uploads or provider calls."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Write the preview or final-export .mp4 under the project library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "name": "preview-video",
+          "semanticType": "video/mp4",
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "required": false
+        }
+      ]
+    },
+    "render_final_export": {
+      "authorityRequests": [
+        {
+          "authority": "local_media_process",
+          "reason": "Run the local FFmpeg renderer without network uploads or provider calls."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Write the preview or final-export .mp4 under the project library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "name": "final-video",
+          "semanticType": "video/mp4",
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "required": false
+        }
+      ]
+    },
+    "start_render_final_export": {
+      "authorityRequests": [
+        {
+          "authority": "local_media_process",
+          "reason": "Run the local FFmpeg renderer without network uploads or provider calls."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Write the preview or final-export .mp4 under the project library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder."
+        }
+      ],
+      "artifactRoots": [
+        "."
+      ],
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "name": "final-video",
+          "semanticType": "video/mp4",
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "required": false
+        }
+      ]
+    },
+    "get_render_final_export_status": {
+      "authorityRequests": [],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "cancel_render_final_export": {
+      "authorityRequests": [
+        {
+          "authority": "local_process_control",
+          "reason": "Set the cancel flag of an AVS final-export job stored in the project library; the exporting process stops ffmpeg."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Remove the temporary partial render file. An output file that existed before the export is never touched."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_project_settings": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    },
+    "set_track_properties": {
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "artifactRoots": [],
+      "inputPorts": [],
+      "outputPorts": []
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$id": "agent-video-studio/add-track-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/add_track.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "id": {
+      "type": "string"
+    },
+    "insertAfterTrackId": {
+      "type": "string"
+    },
+    "insertBeforeTrackId": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "video",
+        "audio",
+        "caption"
+      ],
+      "type": "string"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "muted": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind"
+  ],
+  "title": "Add Track input",
+  "type": "object"
+}

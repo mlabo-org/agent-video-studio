@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/forget-recent-project-workspace-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/forget_recent_project_workspace.",
+  "properties": {
+    "dataDirectory": {
+      "type": "string"
+    },
+    "expectedRecentRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "dataDirectory"
+  ],
+  "title": "Forget Recent Project Workspace input",
+  "type": "object"
+}

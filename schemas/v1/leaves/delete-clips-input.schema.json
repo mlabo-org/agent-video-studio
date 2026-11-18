@@ -1,0 +1,27 @@
+{
+  "$id": "agent-video-studio/delete-clips-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/delete_clips.",
+  "properties": {
+    "clipIds": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "confirm": {
+      "type": "boolean"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "clipIds"
+  ],
+  "title": "Delete Clips input",
+  "type": "object"
+}

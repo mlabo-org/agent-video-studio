@@ -1,0 +1,753 @@
+{
+ "schemaVersion": 1,
+ "revision": 6,
+ "updatedAt": "2026-11-17T11:27:54.885Z",
+ "project": {
+  "id": "project-empty-session",
+  "title": "Untitled Project",
+  "fps": 30,
+  "resolution": {
+   "width": 1920,
+   "height": 1080
+  },
+  "sampleRate": 48000,
+  "playheadSeconds": 0,
+  "media": [
+   {
+    "id": "m1",
+    "name": "a.mp4",
+    "type": "video",
+    "durationSeconds": 20,
+    "source": "/project-library/media/a.mp4",
+    "metadata": {
+     "mediaProbe": {
+      "schemaVersion": 1,
+      "audio": {
+       "hasAudio": true,
+       "streamCount": 1
+      }
+     }
+    }
+   }
+  ],
+  "tracks": [
+   {
+    "id": "V1",
+    "name": "Video",
+    "kind": "video",
+    "clips": [
+     {
+      "id": "c1",
+      "trackId": "V1",
+      "kind": "media",
+      "name": "a.mp4",
+      "mediaId": "m1",
+      "startSeconds": 0,
+      "durationSeconds": 3,
+      "sourceStartSeconds": 0,
+      "properties": {
+       "metadata": {
+        "linkedGroupId": "linked-av-c1",
+        "linkedRole": "video",
+        "linkedAudioClipId": "c1a",
+        "embeddedAudio": true
+       }
+      }
+     },
+     {
+      "id": "c1-split-001",
+      "trackId": "V1",
+      "kind": "media",
+      "name": "a.mp4 (split)",
+      "mediaId": "m1",
+      "startSeconds": 3,
+      "durationSeconds": 5,
+      "sourceStartSeconds": 3,
+      "properties": {
+       "metadata": {
+        "linkedGroupId": "linked-av-c1-split-001",
+        "linkedRole": "video",
+        "linkedAudioClipId": "c1a-split-001",
+        "embeddedAudio": true
+       }
+      }
+     }
+    ]
+   },
+   {
+    "id": "A1",
+    "name": "Audio",
+    "kind": "audio",
+    "clips": [
+     {
+      "id": "c1a",
+      "trackId": "A1",
+      "kind": "media",
+      "name": "a.mp4 Audio",
+      "mediaId": "m1",
+      "startSeconds": 0,
+      "durationSeconds": 3,
+      "sourceStartSeconds": 0,
+      "properties": {
+       "metadata": {
+        "linkedGroupId": "linked-av-c1",
+        "linkedRole": "audio",
+        "linkedVideoClipId": "c1",
+        "embeddedAudio": true
+       },
+       "volumeDb": -6,
+       "fadeInSeconds": 0.5
+      }
+     },
+     {
+      "id": "c1a-split-001",
+      "trackId": "A1",
+      "kind": "media",
+      "name": "a.mp4 Audio (split)",
+      "mediaId": "m1",
+      "startSeconds": 3,
+      "durationSeconds": 5,
+      "sourceStartSeconds": 3,
+      "properties": {
+       "metadata": {
+        "linkedGroupId": "linked-av-c1-split-001",
+        "linkedRole": "audio",
+        "linkedVideoClipId": "c1-split-001",
+        "embeddedAudio": true
+       }
+      }
+     }
+    ]
+   },
+   {
+    "id": "C1",
+    "name": "Captions",
+    "kind": "caption",
+    "clips": [
+     {
+      "id": "caption-001",
+      "trackId": "C1",
+      "kind": "caption",
+      "name": "hello",
+      "startSeconds": 1,
+      "durationSeconds": 2,
+      "properties": {},
+      "caption": {
+       "text": "hello"
+      }
+     }
+    ]
+   }
+  ],
+  "toolHistory": [
+   {
+    "id": "tool-call-001",
+    "toolName": "register_media",
+    "status": "success",
+    "summary": "Registered video media \"a.mp4\".",
+    "output": {
+     "mediaId": "m1",
+     "type": "video",
+     "source": "/project-library/media/a.mp4"
+    }
+   },
+   {
+    "id": "tool-call-002",
+    "toolName": "add_clips",
+    "status": "success",
+    "summary": "Added 2 clips.",
+    "output": {
+     "clipIds": [
+      "c1",
+      "c1a"
+     ]
+    }
+   },
+   {
+    "id": "tool-call-003",
+    "toolName": "split_clip",
+    "status": "success",
+    "summary": "Split clip \"c1\" at 3.000s.",
+    "output": {
+     "clipId": "c1",
+     "atSeconds": 3,
+     "newClipId": "c1-split-001",
+     "newLinkedClipId": "c1a-split-001"
+    }
+   },
+   {
+    "id": "tool-call-004",
+    "toolName": "set_clip_audio",
+    "status": "success",
+    "summary": "Updated audio properties for clip \"c1a\".",
+    "output": {
+     "clipId": "c1a",
+     "previousAudio": {},
+     "nextAudio": {
+      "volumeDb": -6,
+      "fadeInSeconds": 0.5
+     }
+    }
+   },
+   {
+    "id": "tool-call-005",
+    "toolName": "add_captions",
+    "status": "success",
+    "summary": "Added 1 caption block.",
+    "output": {
+     "captionIds": [
+      "caption-001"
+     ]
+    }
+   }
+  ]
+ },
+ "history": {
+  "past": [
+   {
+    "id": "project-empty-session",
+    "title": "Untitled Project",
+    "fps": 30,
+    "resolution": {
+     "width": 1920,
+     "height": 1080
+    },
+    "sampleRate": 48000,
+    "playheadSeconds": 0,
+    "media": [],
+    "tracks": [
+     {
+      "id": "V1",
+      "name": "Video",
+      "kind": "video",
+      "clips": []
+     },
+     {
+      "id": "A1",
+      "name": "Audio",
+      "kind": "audio",
+      "clips": []
+     },
+     {
+      "id": "C1",
+      "name": "Captions",
+      "kind": "caption",
+      "clips": []
+     }
+    ],
+    "toolHistory": []
+   },
+   {
+    "id": "project-empty-session",
+    "title": "Untitled Project",
+    "fps": 30,
+    "resolution": {
+     "width": 1920,
+     "height": 1080
+    },
+    "sampleRate": 48000,
+    "playheadSeconds": 0,
+    "media": [
+     {
+      "id": "m1",
+      "name": "a.mp4",
+      "type": "video",
+      "durationSeconds": 20,
+      "source": "/project-library/media/a.mp4",
+      "metadata": {
+       "mediaProbe": {
+        "schemaVersion": 1,
+        "audio": {
+         "hasAudio": true,
+         "streamCount": 1
+        }
+       }
+      }
+     }
+    ],
+    "tracks": [
+     {
+      "id": "V1",
+      "name": "Video",
+      "kind": "video",
+      "clips": []
+     },
+     {
+      "id": "A1",
+      "name": "Audio",
+      "kind": "audio",
+      "clips": []
+     },
+     {
+      "id": "C1",
+      "name": "Captions",
+      "kind": "caption",
+      "clips": []
+     }
+    ],
+    "toolHistory": [
+     {
+      "id": "tool-call-001",
+      "toolName": "register_media",
+      "status": "success",
+      "summary": "Registered video media \"a.mp4\".",
+      "output": {
+       "mediaId": "m1",
+       "type": "video",
+       "source": "/project-library/media/a.mp4"
+      }
+     }
+    ]
+   },
+   {
+    "id": "project-empty-session",
+    "title": "Untitled Project",
+    "fps": 30,
+    "resolution": {
+     "width": 1920,
+     "height": 1080
+    },
+    "sampleRate": 48000,
+    "playheadSeconds": 0,
+    "media": [
+     {
+      "id": "m1",
+      "name": "a.mp4",
+      "type": "video",
+      "durationSeconds": 20,
+      "source": "/project-library/media/a.mp4",
+      "metadata": {
+       "mediaProbe": {
+        "schemaVersion": 1,
+        "audio": {
+         "hasAudio": true,
+         "streamCount": 1
+        }
+       }
+      }
+     }
+    ],
+    "tracks": [
+     {
+      "id": "V1",
+      "name": "Video",
+      "kind": "video",
+      "clips": [
+       {
+        "id": "c1",
+        "trackId": "V1",
+        "kind": "media",
+        "name": "a.mp4",
+        "mediaId": "m1",
+        "startSeconds": 0,
+        "durationSeconds": 8,
+        "sourceStartSeconds": 0,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1",
+          "linkedRole": "video",
+          "linkedAudioClipId": "c1a",
+          "embeddedAudio": true
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "Audio",
+      "kind": "audio",
+      "clips": [
+       {
+        "id": "c1a",
+        "trackId": "A1",
+        "kind": "media",
+        "name": "a.mp4 Audio",
+        "mediaId": "m1",
+        "startSeconds": 0,
+        "durationSeconds": 8,
+        "sourceStartSeconds": 0,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1",
+          "linkedRole": "audio",
+          "linkedVideoClipId": "c1",
+          "embeddedAudio": true
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "C1",
+      "name": "Captions",
+      "kind": "caption",
+      "clips": []
+     }
+    ],
+    "toolHistory": [
+     {
+      "id": "tool-call-001",
+      "toolName": "register_media",
+      "status": "success",
+      "summary": "Registered video media \"a.mp4\".",
+      "output": {
+       "mediaId": "m1",
+       "type": "video",
+       "source": "/project-library/media/a.mp4"
+      }
+     },
+     {
+      "id": "tool-call-002",
+      "toolName": "add_clips",
+      "status": "success",
+      "summary": "Added 2 clips.",
+      "output": {
+       "clipIds": [
+        "c1",
+        "c1a"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "id": "project-empty-session",
+    "title": "Untitled Project",
+    "fps": 30,
+    "resolution": {
+     "width": 1920,
+     "height": 1080
+    },
+    "sampleRate": 48000,
+    "playheadSeconds": 0,
+    "media": [
+     {
+      "id": "m1",
+      "name": "a.mp4",
+      "type": "video",
+      "durationSeconds": 20,
+      "source": "/project-library/media/a.mp4",
+      "metadata": {
+       "mediaProbe": {
+        "schemaVersion": 1,
+        "audio": {
+         "hasAudio": true,
+         "streamCount": 1
+        }
+       }
+      }
+     }
+    ],
+    "tracks": [
+     {
+      "id": "V1",
+      "name": "Video",
+      "kind": "video",
+      "clips": [
+       {
+        "id": "c1",
+        "trackId": "V1",
+        "kind": "media",
+        "name": "a.mp4",
+        "mediaId": "m1",
+        "startSeconds": 0,
+        "durationSeconds": 3,
+        "sourceStartSeconds": 0,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1",
+          "linkedRole": "video",
+          "linkedAudioClipId": "c1a",
+          "embeddedAudio": true
+         }
+        }
+       },
+       {
+        "id": "c1-split-001",
+        "trackId": "V1",
+        "kind": "media",
+        "name": "a.mp4 (split)",
+        "mediaId": "m1",
+        "startSeconds": 3,
+        "durationSeconds": 5,
+        "sourceStartSeconds": 3,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1-split-001",
+          "linkedRole": "video",
+          "linkedAudioClipId": "c1a-split-001",
+          "embeddedAudio": true
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "Audio",
+      "kind": "audio",
+      "clips": [
+       {
+        "id": "c1a",
+        "trackId": "A1",
+        "kind": "media",
+        "name": "a.mp4 Audio",
+        "mediaId": "m1",
+        "startSeconds": 0,
+        "durationSeconds": 3,
+        "sourceStartSeconds": 0,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1",
+          "linkedRole": "audio",
+          "linkedVideoClipId": "c1",
+          "embeddedAudio": true
+         }
+        }
+       },
+       {
+        "id": "c1a-split-001",
+        "trackId": "A1",
+        "kind": "media",
+        "name": "a.mp4 Audio (split)",
+        "mediaId": "m1",
+        "startSeconds": 3,
+        "durationSeconds": 5,
+        "sourceStartSeconds": 3,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1-split-001",
+          "linkedRole": "audio",
+          "linkedVideoClipId": "c1-split-001",
+          "embeddedAudio": true
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "C1",
+      "name": "Captions",
+      "kind": "caption",
+      "clips": []
+     }
+    ],
+    "toolHistory": [
+     {
+      "id": "tool-call-001",
+      "toolName": "register_media",
+      "status": "success",
+      "summary": "Registered video media \"a.mp4\".",
+      "output": {
+       "mediaId": "m1",
+       "type": "video",
+       "source": "/project-library/media/a.mp4"
+      }
+     },
+     {
+      "id": "tool-call-002",
+      "toolName": "add_clips",
+      "status": "success",
+      "summary": "Added 2 clips.",
+      "output": {
+       "clipIds": [
+        "c1",
+        "c1a"
+       ]
+      }
+     },
+     {
+      "id": "tool-call-003",
+      "toolName": "split_clip",
+      "status": "success",
+      "summary": "Split clip \"c1\" at 3.000s.",
+      "output": {
+       "clipId": "c1",
+       "atSeconds": 3,
+       "newClipId": "c1-split-001",
+       "newLinkedClipId": "c1a-split-001"
+      }
+     }
+    ]
+   },
+   {
+    "id": "project-empty-session",
+    "title": "Untitled Project",
+    "fps": 30,
+    "resolution": {
+     "width": 1920,
+     "height": 1080
+    },
+    "sampleRate": 48000,
+    "playheadSeconds": 0,
+    "media": [
+     {
+      "id": "m1",
+      "name": "a.mp4",
+      "type": "video",
+      "durationSeconds": 20,
+      "source": "/project-library/media/a.mp4",
+      "metadata": {
+       "mediaProbe": {
+        "schemaVersion": 1,
+        "audio": {
+         "hasAudio": true,
+         "streamCount": 1
+        }
+       }
+      }
+     }
+    ],
+    "tracks": [
+     {
+      "id": "V1",
+      "name": "Video",
+      "kind": "video",
+      "clips": [
+       {
+        "id": "c1",
+        "trackId": "V1",
+        "kind": "media",
+        "name": "a.mp4",
+        "mediaId": "m1",
+        "startSeconds": 0,
+        "durationSeconds": 3,
+        "sourceStartSeconds": 0,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1",
+          "linkedRole": "video",
+          "linkedAudioClipId": "c1a",
+          "embeddedAudio": true
+         }
+        }
+       },
+       {
+        "id": "c1-split-001",
+        "trackId": "V1",
+        "kind": "media",
+        "name": "a.mp4 (split)",
+        "mediaId": "m1",
+        "startSeconds": 3,
+        "durationSeconds": 5,
+        "sourceStartSeconds": 3,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1-split-001",
+          "linkedRole": "video",
+          "linkedAudioClipId": "c1a-split-001",
+          "embeddedAudio": true
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "A1",
+      "name": "Audio",
+      "kind": "audio",
+      "clips": [
+       {
+        "id": "c1a",
+        "trackId": "A1",
+        "kind": "media",
+        "name": "a.mp4 Audio",
+        "mediaId": "m1",
+        "startSeconds": 0,
+        "durationSeconds": 3,
+        "sourceStartSeconds": 0,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1",
+          "linkedRole": "audio",
+          "linkedVideoClipId": "c1",
+          "embeddedAudio": true
+         },
+         "volumeDb": -6,
+         "fadeInSeconds": 0.5
+        }
+       },
+       {
+        "id": "c1a-split-001",
+        "trackId": "A1",
+        "kind": "media",
+        "name": "a.mp4 Audio (split)",
+        "mediaId": "m1",
+        "startSeconds": 3,
+        "durationSeconds": 5,
+        "sourceStartSeconds": 3,
+        "properties": {
+         "metadata": {
+          "linkedGroupId": "linked-av-c1-split-001",
+          "linkedRole": "audio",
+          "linkedVideoClipId": "c1-split-001",
+          "embeddedAudio": true
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "C1",
+      "name": "Captions",
+      "kind": "caption",
+      "clips": []
+     }
+    ],
+    "toolHistory": [
+     {
+      "id": "tool-call-001",
+      "toolName": "register_media",
+      "status": "success",
+      "summary": "Registered video media \"a.mp4\".",
+      "output": {
+       "mediaId": "m1",
+       "type": "video",
+       "source": "/project-library/media/a.mp4"
+      }
+     },
+     {
+      "id": "tool-call-002",
+      "toolName": "add_clips",
+      "status": "success",
+      "summary": "Added 2 clips.",
+      "output": {
+       "clipIds": [
+        "c1",
+        "c1a"
+       ]
+      }
+     },
+     {
+      "id": "tool-call-003",
+      "toolName": "split_clip",
+      "status": "success",
+      "summary": "Split clip \"c1\" at 3.000s.",
+      "output": {
+       "clipId": "c1",
+       "atSeconds": 3,
+       "newClipId": "c1-split-001",
+       "newLinkedClipId": "c1a-split-001"
+      }
+     },
+     {
+      "id": "tool-call-004",
+      "toolName": "set_clip_audio",
+      "status": "success",
+      "summary": "Updated audio properties for clip \"c1a\".",
+      "output": {
+       "clipId": "c1a",
+       "previousAudio": {},
+       "nextAudio": {
+        "volumeDb": -6,
+        "fadeInSeconds": 0.5
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "future": []
+ }
+}

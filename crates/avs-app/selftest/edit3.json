@@ -1,0 +1,138 @@
+[
+ {
+  "wait": 1000
+ },
+ "waitIdle",
+ {
+  "export": "${ROOT}/out.mp4"
+ },
+ {
+  "expect": {
+   "fileExists": "${ROOT}/out.mp4",
+   "noError": true
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "30-export-done"
+ },
+ {
+  "import": {
+   "path": "${ROOT}/source-media/clip-b.mp4",
+   "track": "V1",
+   "at": 18.0
+  }
+ },
+ {
+  "wait": 400
+ },
+ {
+  "expect": {
+   "mediaCount": 6,
+   "clipCount": 9,
+   "noError": true
+  }
+ },
+ {
+  "key": "shift+z"
+ },
+ {
+  "wait": 500
+ },
+ {
+  "screenshot": "31-imported"
+ },
+ {
+  "library": {
+   "action": "new",
+   "path": "${ROOT}/lib2"
+  }
+ },
+ {
+  "wait": 500
+ },
+ {
+  "expect": {
+   "dataDirectoryEndsWith": "lib2/Agent Video Studio/Project Library",
+   "clipCount": 0
+  }
+ },
+ {
+  "screenshot": "32-new-library"
+ },
+ {
+  "library": {
+   "action": "open",
+   "path": "${ROOT}"
+  }
+ },
+ {
+  "wait": 500
+ },
+ {
+  "expect": {
+   "clipCount": 9
+  }
+ },
+ {
+  "library": {
+   "action": "delete",
+   "path": "${ROOT}/lib2"
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "33-delete-confirm"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:confirm-delete-library"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "expect": {
+   "pathExists": "${ROOT}/lib2/Agent Video Studio/Project Library.deleted",
+   "pathMissing": "${ROOT}/lib2/Agent Video Studio/Project Library"
+  }
+ },
+ {
+  "library": {
+   "action": "restore",
+   "path": "${ROOT}/lib2/Agent Video Studio/Project Library.deleted"
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "34-restore-confirm"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:confirm-restore-library"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "expect": {
+   "pathExists": "${ROOT}/lib2/Agent Video Studio/Project Library",
+   "noError": true
+  }
+ },
+ {
+  "dump": "35-state"
+ }
+]

@@ -1,0 +1,27 @@
+{
+  "$id": "agent-video-studio/set-track-properties-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/set_track_properties.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "trackId"
+  ],
+  "title": "Set Track Properties input",
+  "type": "object"
+}

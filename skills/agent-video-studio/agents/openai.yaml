@@ -1,0 +1,9 @@
+interface:
+  display_name: "Agent Video Studio"
+  short_description: "AVS MCP auto-edit plans, timeline editing, and export"
+  brand_color: "#14B8A6"
+  default_prompt: >-
+    Use $agent-video-studio to exchange avs.auto-edit-plan.v1 data over MCP, plan external silence ranges, inspect and atomically apply exact plan hashes, import CodexVideo handoffs or generated media, validate timelines, preview/export, or open the AVS UI.
+
+policy:
+  allow_implicit_invocation: true

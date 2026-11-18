@@ -1,0 +1,17 @@
+{
+  "$id": "agent-video-studio/render-preview-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/render_preview.",
+  "properties": {
+    "durationSeconds": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "outputPath": {
+      "type": "string"
+    }
+  },
+  "title": "Render Preview input",
+  "type": "object"
+}

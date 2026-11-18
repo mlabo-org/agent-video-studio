@@ -1,0 +1,17 @@
+{
+  "$id": "agent-video-studio/start-render-final-export-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/start_render_final_export.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "outputPath": {
+      "type": "string"
+    }
+  },
+  "title": "Start Render Final Export input",
+  "type": "object"
+}

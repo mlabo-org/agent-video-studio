@@ -1,0 +1,32 @@
+{
+  "$id": "agent-video-studio/delete-clips-right-at-time-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/delete_clips_right_at_time.",
+  "properties": {
+    "atSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "clipIds": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "confirm": {
+      "type": "boolean"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "clipIds",
+    "atSeconds"
+  ],
+  "title": "Delete Clips Right At Time input",
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "$id": "agent-video-studio/close-gap-at-time-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/close_gap_at_time.",
+  "properties": {
+    "atSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "trackId",
+    "atSeconds"
+  ],
+  "title": "Close Gap At Time input",
+  "type": "object"
+}

@@ -1,0 +1,211 @@
+{
+  "schema_version": "creator-contract/v1",
+  "kind": "plugin",
+  "capability_id": "agent-video-studio",
+  "official_creator": "plugin-creator",
+  "routing": {
+    "task_class": "AVS MCP agent-operated video timeline planning, editing, validation, preview, and export",
+    "natural_language_triggers": [
+      "AVS MCP",
+      "無音カット計画をAVSに渡して",
+      "他プラグインの編集計画を適用して"
+    ],
+    "primary_route": "Use Agent Video Studio MCP tools and avs.auto-edit-plan.v1 for structured agent-to-agent editing.",
+    "fallback_conditions": [
+      "Use CodexVideo or another owning plugin for STT, TTS, visual generation, or provider-backed media generation before AVS import."
+    ],
+    "non_use_conditions": [
+      "Do not use AVS for publishing, authentication, generic one-off ffmpeg repair, or hidden provider calls."
+    ],
+    "discovery": {
+      "task_terms": [
+        "AVS MCP",
+        "auto-edit plan",
+        "timeline editing"
+      ],
+      "trigger_phrases": [
+        "plan_silence_removal",
+        "inspect_auto_edit_plan",
+        "apply_auto_edit_plan",
+        "動画を手動編集できる形に"
+      ],
+      "artifact_or_tool_terms": [
+        "avs.auto-edit-plan.v1",
+        "planHash",
+        "validate_timeline",
+        "render_preview"
+      ],
+      "aliases": [
+        "AVS",
+        "Agent Video Studio"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "MCP project and media references",
+      "description": "Stable AVS project, revision, track, media, and clip IDs obtained from current MCP read/import tools."
+    },
+    {
+      "name": "External analysis or inline edit plan",
+      "description": "Stable-ID silence ranges or a strict avs.auto-edit-plan.v1 produced by the host agent (Codex or Claude Code) or another plugin."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Inspected auto-edit plan",
+      "description": "Canonical SHA-256 plan hash, projected operation results, before/after timeline inspection, and validation."
+    },
+    {
+      "name": "Atomic AVS session mutation",
+      "description": "One committed project-session revision and undo unit with structured per-operation outputs."
+    }
+  ],
+  "validation_commands": [
+    {
+      "name": "workspace-tests",
+      "argv": [
+        "/usr/bin/env",
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked"
+      ],
+      "covers": [
+        "versioned-auto-edit-plan",
+        "safe-atomic-plan-application",
+        "agent-native-mcp-routing",
+        "language-theme-controls"
+      ],
+      "test_paths": [
+        "crates/avs-core/tests/plans.rs",
+        "crates/avs-core/tests/edits.rs",
+        "crates/avs-session/tests/session.rs",
+        "crates/avs-mcp/tests/stdio.rs",
+        "crates/avs-mcp/tests/plugin.rs",
+        "crates/avs-app/tests/store_and_fit.rs"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 900
+    },
+    {
+      "name": "lint",
+      "argv": [
+        "/usr/bin/env",
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--no-deps",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "covers": [],
+      "test_paths": [],
+      "cwd": ".",
+      "timeout_seconds": 900
+    },
+    {
+      "name": "claude-plugin-validation",
+      "argv": [
+        "/usr/bin/env",
+        "claude",
+        "plugin",
+        "validate",
+        "."
+      ],
+      "covers": [
+        "agent-native-mcp-routing"
+      ],
+      "test_paths": [],
+      "cwd": ".",
+      "timeout_seconds": 120
+    }
+  ],
+  "runtime_boundaries": {
+    "source_of_truth": ".",
+    "generated_or_runtime_paths": [
+      "~/.codex/plugins/cache/ (Codex's cached copy of this plugin)",
+      "~/.local/bin/agent-video-studio-mcp",
+      "~/Applications/Agent Video Studio.app",
+      "target/"
+    ],
+    "forbidden_source_paths": [
+      "~/.codex/plugins/cache",
+      "~/.claude/plugins/cache"
+    ]
+  },
+  "user_facing_ui": {
+    "present": true,
+    "language_controls": [
+      "Japanese",
+      "English",
+      "System"
+    ],
+    "theme_controls": [
+      "Light",
+      "Dark",
+      "System"
+    ],
+    "state_persistence": true,
+    "display_verification": "crates/avs-app/selftest/run.sh <script> (drives the built editor against an isolated library and saves screenshots) and the App Shell Foundation check"
+  },
+  "production_contract": {
+    "reviewed": true,
+    "rules": [
+      {
+        "id": "versioned-auto-edit-plan",
+        "description": "Agent-authored edits use a strict versioned schema, stable producer/target/operation IDs, and sequential timestamp semantics.",
+        "enforcement_points": [
+          "crates/avs-core/src/plan.rs",
+          "crates/avs-mcp/src/server.rs"
+        ],
+        "tests": [
+          "crates/avs-core/tests/plans.rs",
+          "crates/avs-mcp/tests/stdio.rs"
+        ]
+      },
+      {
+        "id": "safe-atomic-plan-application",
+        "description": "Plan application requires exact project revision, inspected plan hash, explicit confirmation, valid projected timeline, and one session revision.",
+        "enforcement_points": [
+          "crates/avs-core/src/plan.rs",
+          "crates/avs-mcp/src/server.rs",
+          "crates/avs-session/src/session.rs"
+        ],
+        "tests": [
+          "crates/avs-core/tests/plans.rs",
+          "crates/avs-mcp/tests/stdio.rs"
+        ]
+      },
+      {
+        "id": "agent-native-mcp-routing",
+        "description": "The host agent (Codex or Claude Code) and other plugins can discover plan, inspect, and apply routes through aligned plugin, skill, and MCP metadata.",
+        "enforcement_points": [
+          ".codex-plugin/plugin.json",
+          "skills/agent-video-studio/SKILL.md",
+          "skills/agent-video-studio/agents/openai.yaml",
+          "crates/avs-mcp/src/server.rs"
+        ],
+        "tests": [
+          "crates/avs-mcp/tests/plugin.rs",
+          "crates/avs-mcp/tests/stdio.rs"
+        ]
+      },
+      {
+        "id": "language-theme-controls",
+        "description": "The existing AVS UI exposes Japanese, English, and System language choices plus Light, Dark, and System theme choices with persistence.",
+        "enforcement_points": [
+          "crates/avs-app/src/app.rs",
+          "crates/avs-app/src/i18n.rs"
+        ],
+        "tests": [
+          "crates/avs-app/src/app_shell_foundation.rs",
+          "crates/avs-app/src/i18n.rs"
+        ]
+      }
+    ]
+  }
+}

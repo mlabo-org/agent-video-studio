@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/create-project-session-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/create_project_session call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "create_project_session"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "create_project_session output",
+  "type": "object"
+}

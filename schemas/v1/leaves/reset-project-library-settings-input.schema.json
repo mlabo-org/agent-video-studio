@@ -1,0 +1,17 @@
+{
+  "$id": "agent-video-studio/reset-project-library-settings-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/reset_project_library_settings.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "expectedRevision"
+  ],
+  "title": "Reset Project Library Settings input",
+  "type": "object"
+}

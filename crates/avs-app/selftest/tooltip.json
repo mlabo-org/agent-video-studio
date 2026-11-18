@@ -1,0 +1,9 @@
+[ {"wait": 1000}, "waitIdle",
+  {"hover": {"widget": "button:play"}}, {"wait": 1300}, {"screenshot": "70-tooltip-play"}, {"key": "space"}, {"expect": {"playing": true}}, {"key": "k"},
+  {"hover": {"media": "clip-a.mp4"}}, {"wait": 1300}, {"screenshot": "71-tooltip-media"}, {"key": "space"}, {"expect": {"playing": true}}, {"key": "k"},
+  {"hover": {"widget": "header:V1"}}, {"wait": 1300}, {"screenshot": "72-tooltip-header"}, {"key": "space"}, {"expect": {"playing": true}}, {"key": "k"},
+  {"hover": {"x": 800, "y": 300}},
+  {"fontSize": 28}, {"wait": 600}, {"screenshot": "73-font-28"},
+  {"fontSize": 10}, {"wait": 600}, {"screenshot": "74-font-10"},
+  {"fontSize": 16}, {"wait": 300}
+]

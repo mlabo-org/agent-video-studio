@@ -1,0 +1,39 @@
+{
+  "$id": "agent-video-studio/move-clip-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/move_clip.",
+  "properties": {
+    "clipId": {
+      "type": "string"
+    },
+    "editMode": {
+      "enum": [
+        "strict",
+        "insert",
+        "overwrite"
+      ],
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "startSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "startTime": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "clipId"
+  ],
+  "title": "Move Clip input",
+  "type": "object"
+}

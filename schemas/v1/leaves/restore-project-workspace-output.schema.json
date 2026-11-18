@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/restore-project-workspace-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/restore_project_workspace call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "restore_project_workspace"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "restore_project_workspace output",
+  "type": "object"
+}

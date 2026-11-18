@@ -1,0 +1,23 @@
+{
+  "$id": "agent-video-studio/delete-track-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/delete_track.",
+  "properties": {
+    "deleteClips": {
+      "type": "boolean"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "trackId"
+  ],
+  "title": "Delete Track input",
+  "type": "object"
+}

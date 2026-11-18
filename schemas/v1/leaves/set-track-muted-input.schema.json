@@ -1,0 +1,24 @@
+{
+  "$id": "agent-video-studio/set-track-muted-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/set_track_muted.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "muted": {
+      "type": "boolean"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "trackId",
+    "muted"
+  ],
+  "title": "Set Track Muted input",
+  "type": "object"
+}

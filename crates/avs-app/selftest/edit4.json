@@ -1,0 +1,389 @@
+[
+ {
+  "wait": 1000
+ },
+ "waitIdle",
+ {
+  "hover": {
+   "widget": "button:play"
+  }
+ },
+ {
+  "key": "space"
+ },
+ {
+  "expect": {
+   "playing": true
+  }
+ },
+ {
+  "wait": 400
+ },
+ {
+  "key": "k"
+ },
+ {
+  "expect": {
+   "playing": false
+  }
+ },
+ {
+  "key": "home"
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-3"
+   },
+   "to": {
+    "time": 3.0,
+    "track": "V1"
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "start": 0.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "start": 8.0
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-4",
+    "start": 0.0
+   }
+  }
+ },
+ {
+  "screenshot": "40-reordered"
+ },
+ {
+  "key": "cmd+z"
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "start": 10.0
+   }
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "mute:A3"
+   }
+  }
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "A3",
+    "muted": true
+   }
+  }
+ },
+ {
+  "rightClick": {
+   "target": {
+    "widget": "header:V2"
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "header-menu:down"
+   }
+  }
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V2",
+    "index": 1
+   }
+  }
+ },
+ {
+  "key": "cmd+z"
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V2",
+    "index": 0
+   }
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "time": 19.5,
+    "track": "V2"
+   },
+   "to": {
+    "time": 11.0,
+    "track": "A1"
+   }
+  }
+ },
+ {
+  "expect": {
+   "selected": [
+    "clip-3",
+    "clip-4"
+   ]
+  }
+ },
+ {
+  "key": "b"
+ },
+ {
+  "click": {
+   "target": {
+    "clip": "clip-3",
+    "at": 0.5
+   }
+  }
+ },
+ {
+  "expect": {
+   "clipCount": 9,
+   "clip": {
+    "id": "clip-3",
+    "end": 14.0
+   }
+  }
+ },
+ {
+  "key": "a"
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-3"
+   },
+   "to": {
+    "clip": "clip-3",
+    "dx": -66.5
+   },
+   "modifiers": "alt"
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "start": 9.0,
+    "end": 13.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "end": 9.0
+   }
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "clip": "clip-7"
+   }
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "time": 16.0
+   }
+  }
+ },
+ {
+  "key": "alt+["
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-7",
+    "start": 16.0
+   }
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:add-video-track"
+   }
+  }
+ },
+ {
+  "expect": {
+   "trackCount": 6,
+   "track": {
+    "id": "V3",
+    "index": 0
+   }
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-5"
+   },
+   "to": {
+    "time": 6.5,
+    "track": "V3"
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-5",
+    "track": "V3",
+    "start": 4.0
+   }
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "media": "portrait.mp4"
+   },
+   "to": {
+    "time": 20.5,
+    "track": "V1"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "expect": {
+   "clipCount": 10,
+   "noError": true
+  }
+ },
+ {
+  "dropFile": {
+   "path": "${ROOT}/source-media/clip-a.mp4",
+   "target": {
+    "time": 21.0,
+    "track": "V2"
+   }
+  }
+ },
+ "waitIdle",
+ {
+  "wait": 300
+ },
+ {
+  "expect": {
+   "mediaCount": 6,
+   "noError": true
+  }
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V2",
+    "clips": 1
+   },
+   "clipCount": 12
+  }
+ },
+ {
+  "key": "shift+z"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "screenshot": "41-after-drops"
+ },
+ {
+  "rightClick": {
+   "target": {
+    "clip": "clip-1"
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "expect": {
+   "popupOpen": true
+  }
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "wait": 200
+ },
+ {
+  "expect": {
+   "popupOpen": false
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "clip": "clip-1"
+   }
+  }
+ },
+ {
+  "key": "cmd+x"
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "exists": false
+   }
+  }
+ },
+ {
+  "key": "home"
+ },
+ {
+  "key": "cmd+v"
+ },
+ {
+  "expect": {
+   "noError": true
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "42-final"
+ },
+ {
+  "dump": "42-state"
+ }
+]

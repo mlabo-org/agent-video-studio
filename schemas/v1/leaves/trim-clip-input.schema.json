@@ -1,0 +1,36 @@
+{
+  "$id": "agent-video-studio/trim-clip-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/trim_clip.",
+  "properties": {
+    "clipId": {
+      "type": "string"
+    },
+    "durationSeconds": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "endSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "sourceStartSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "startSeconds": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "clipId"
+  ],
+  "title": "Trim Clip input",
+  "type": "object"
+}

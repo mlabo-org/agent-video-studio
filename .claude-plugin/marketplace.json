@@ -1,0 +1,17 @@
+{
+  "name": "agent-video-studio",
+  "owner": {
+    "name": "mlabo-org",
+    "url": "https://github.com/mlabo-org"
+  },
+  "metadata": {
+    "description": "Claude Code marketplace for the agent-video-studio plugin."
+  },
+  "plugins": [
+    {
+      "name": "agent-video-studio",
+      "source": "./",
+      "description": "Agent Video Studio (AVS) MCP for agent-native avs.auto-edit-plan.v1 planning, dry-run inspection, hash-bound atomic timeline application, CodexVideo handoff import, validation, preview/export, and local editor UI. Upstream plugins handle analysis or generation; AVS applies structured edits."
+    }
+  ]
+}

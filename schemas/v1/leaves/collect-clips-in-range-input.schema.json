@@ -1,0 +1,31 @@
+{
+  "$id": "agent-video-studio/collect-clips-in-range-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/collect_clips_in_range.",
+  "properties": {
+    "endSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "includeLinkedCompanions": {
+      "type": "boolean"
+    },
+    "startSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "trackIds": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "startSeconds",
+    "endSeconds"
+  ],
+  "title": "Collect Clips In Range input",
+  "type": "object"
+}

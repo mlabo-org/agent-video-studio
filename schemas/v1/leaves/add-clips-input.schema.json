@@ -1,0 +1,225 @@
+{
+  "$id": "agent-video-studio/add-clips-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/add_clips.",
+  "properties": {
+    "clips": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "durationSeconds": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "id": {
+            "type": "string"
+          },
+          "linkedAudio": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "properties": {
+                "$ref": "#/properties/clips/items/properties/properties"
+              },
+              "trackId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "trackId"
+            ],
+            "type": "object"
+          },
+          "mediaId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "additionalProperties": false,
+            "properties": {
+              "captionStyle": {
+                "additionalProperties": false,
+                "properties": {
+                  "background": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "fontSize": {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  "placement": {
+                    "enum": [
+                      "lower-third",
+                      "center",
+                      "title",
+                      "subtitle"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "crop": {
+                "additionalProperties": false,
+                "properties": {
+                  "bottom": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "left": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "right": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "top": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "left",
+                  "right",
+                  "top",
+                  "bottom"
+                ],
+                "type": "object"
+              },
+              "fadeInSeconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "fadeOutSeconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "metadata": {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "items": {
+                        "$ref": "#/properties/clips/items/properties/properties/properties/metadata/additionalProperties"
+                      },
+                      "type": "array"
+                    },
+                    {
+                      "additionalProperties": {
+                        "$ref": "#/properties/clips/items/properties/properties/properties/metadata/additionalProperties"
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              "muted": {
+                "type": "boolean"
+              },
+              "opacity": {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              "position": {
+                "additionalProperties": false,
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "type": "object"
+              },
+              "rotationDegrees": {
+                "type": "number"
+              },
+              "scale": {
+                "exclusiveMinimum": 0,
+                "type": "number"
+              },
+              "speed": {
+                "exclusiveMinimum": 0,
+                "type": "number"
+              },
+              "volumeDb": {
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "sourceStartSeconds": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "startSeconds": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "trackId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "trackId",
+          "mediaId",
+          "startSeconds"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "editMode": {
+      "enum": [
+        "strict",
+        "insert",
+        "overwrite"
+      ],
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "clips"
+  ],
+  "title": "Add Clips input",
+  "type": "object"
+}

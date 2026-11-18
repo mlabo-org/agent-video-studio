@@ -1,0 +1,84 @@
+{
+  "$id": "agent-video-studio/register-media-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/register_media.",
+  "properties": {
+    "durationSeconds": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "id": {
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          },
+          {
+            "items": {
+              "$ref": "#/properties/metadata/additionalProperties"
+            },
+            "type": "array"
+          },
+          {
+            "additionalProperties": {
+              "$ref": "#/properties/metadata/additionalProperties"
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "transcript": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "video",
+        "audio",
+        "image",
+        "sequence"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "durationSeconds"
+  ],
+  "title": "Register Media input",
+  "type": "object"
+}

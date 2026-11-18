@@ -1,0 +1,26 @@
+{
+  "$id": "agent-video-studio/set-project-settings-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/set_project_settings call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "revision": {
+      "description": "Project session revision after the call.",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "tool": {
+      "const": "set_project_settings"
+    }
+  },
+  "required": [
+    "ok",
+    "tool",
+    "revision"
+  ],
+  "title": "set_project_settings output",
+  "type": "object"
+}

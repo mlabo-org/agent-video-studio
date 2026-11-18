@@ -1,0 +1,8 @@
+{
+  "$id": "agent-video-studio/inspect-timeline-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exact arguments accepted by agent_video_studio/inspect_timeline.",
+  "properties": {},
+  "title": "Inspect Timeline input",
+  "type": "object"
+}

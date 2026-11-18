@@ -1,0 +1,33 @@
+{
+  "$id": "agent-video-studio/blade-at-time-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/blade_at_time.",
+  "properties": {
+    "atSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "clipIds": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trackIds": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "atSeconds"
+  ],
+  "title": "Blade At Time input",
+  "type": "object"
+}

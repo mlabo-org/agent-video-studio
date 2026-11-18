@@ -1,0 +1,26 @@
+{
+  "$id": "agent-video-studio/delete-right-at-time-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/delete_right_at_time call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "revision": {
+      "description": "Project session revision after the call.",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "tool": {
+      "const": "delete_right_at_time"
+    }
+  },
+  "required": [
+    "ok",
+    "tool",
+    "revision"
+  ],
+  "title": "delete_right_at_time output",
+  "type": "object"
+}

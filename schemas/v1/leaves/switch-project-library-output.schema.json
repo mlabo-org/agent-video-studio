@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/switch-project-library-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/switch_project_library call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "switch_project_library"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "switch_project_library output",
+  "type": "object"
+}

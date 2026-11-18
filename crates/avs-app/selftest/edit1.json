@@ -1,0 +1,235 @@
+[
+ {
+  "wait": 1200
+ },
+ "waitIdle",
+ {
+  "click": {
+   "target": {
+    "clip": "clip-1"
+   }
+  }
+ },
+ {
+  "expect": {
+   "selected": [
+    "clip-1",
+    "clip-2"
+   ]
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "time": 5.0
+   }
+  }
+ },
+ {
+  "expect": {
+   "playhead": 5.0
+  }
+ },
+ {
+  "key": "cmd+b"
+ },
+ {
+  "expect": {
+   "clipCount": 9,
+   "clip": {
+    "id": "clip-1",
+    "end": 5.0
+   }
+  }
+ },
+ {
+  "key": "right"
+ },
+ {
+  "key": "shift+right"
+ },
+ {
+  "expect": {
+   "playhead": 5.3666667
+  }
+ },
+ {
+  "key": "up"
+ },
+ {
+  "expect": {
+   "playhead": 5.0
+  }
+ },
+ {
+  "key": "down"
+ },
+ {
+  "expect": {
+   "playhead": 9.0
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-3"
+   },
+   "to": {
+    "clip": "clip-3",
+    "dx": 133
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "start": 12.0
+   }
+  }
+ },
+ {
+  "screenshot": "10-after-move"
+ },
+ {
+  "key": "cmd+z"
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "start": 10.0
+   }
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-3",
+    "at": "end"
+   },
+   "to": {
+    "clip": "clip-3",
+    "at": "end",
+    "dx": -133
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "end": 16.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "key": "t"
+ },
+ {
+  "expect": {
+   "tool": "trim"
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-1",
+    "at": "end"
+   },
+   "to": {
+    "clip": "clip-1",
+    "at": "end",
+    "dx": 66.5
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "end": 6.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "screenshot": "11-after-roll"
+ },
+ {
+  "key": "a"
+ },
+ {
+  "key": "r"
+ },
+ {
+  "drag": {
+   "from": {
+    "time": 1.0,
+    "track": "V1"
+   },
+   "to": {
+    "time": 2.0,
+    "track": "V1"
+   }
+  }
+ },
+ {
+  "expect": {
+   "range": [
+    1.0,
+    2.0
+   ]
+  }
+ },
+ {
+  "screenshot": "12-range"
+ },
+ {
+  "key": "backspace"
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "end": 1.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "key": "alt+x"
+ },
+ {
+  "expect": {
+   "range": null
+  }
+ },
+ {
+  "key": "a"
+ },
+ {
+  "apply": {
+   "tool": "split_clip",
+   "args": {
+    "clipId": "clip-3",
+    "atSeconds": 12.0
+   }
+  }
+ },
+ {
+  "wait": 500
+ },
+ {
+  "expect": {
+   "statusContains": "rev"
+  }
+ },
+ {
+  "screenshot": "13-external"
+ },
+ {
+  "dump": "13-state"
+ }
+]

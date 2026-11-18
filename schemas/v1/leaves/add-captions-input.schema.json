@@ -1,0 +1,201 @@
+{
+  "$id": "agent-video-studio/add-captions-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/add_captions.",
+  "properties": {
+    "captions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "durationSeconds": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "endSeconds": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "id": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "properties": {
+            "additionalProperties": false,
+            "properties": {
+              "captionStyle": {
+                "additionalProperties": false,
+                "properties": {
+                  "background": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "fontSize": {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  "placement": {
+                    "enum": [
+                      "lower-third",
+                      "center",
+                      "title",
+                      "subtitle"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "crop": {
+                "additionalProperties": false,
+                "properties": {
+                  "bottom": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "left": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "right": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "top": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "left",
+                  "right",
+                  "top",
+                  "bottom"
+                ],
+                "type": "object"
+              },
+              "fadeInSeconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "fadeOutSeconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "metadata": {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "items": {
+                        "$ref": "#/properties/captions/items/properties/properties/properties/metadata/additionalProperties"
+                      },
+                      "type": "array"
+                    },
+                    {
+                      "additionalProperties": {
+                        "$ref": "#/properties/captions/items/properties/properties/properties/metadata/additionalProperties"
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              "muted": {
+                "type": "boolean"
+              },
+              "opacity": {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              "position": {
+                "additionalProperties": false,
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "type": "object"
+              },
+              "rotationDegrees": {
+                "type": "number"
+              },
+              "scale": {
+                "exclusiveMinimum": 0,
+                "type": "number"
+              },
+              "speed": {
+                "exclusiveMinimum": 0,
+                "type": "number"
+              },
+              "volumeDb": {
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "speaker": {
+            "type": "string"
+          },
+          "startSeconds": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "text": {
+            "type": "string"
+          },
+          "trackId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "startSeconds"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "captions"
+  ],
+  "title": "Add Captions input",
+  "type": "object"
+}

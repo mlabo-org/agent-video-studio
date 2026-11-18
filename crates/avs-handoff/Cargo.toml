@@ -1,0 +1,15 @@
+[package]
+name = "avs-handoff"
+version.workspace = true
+edition.workspace = true
+rust-version = "1.89"
+license.workspace = true
+
+[dependencies]
+avs-core = { path = "../avs-core" }
+avs-session = { path = "../avs-session" }
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+tempfile = "3"

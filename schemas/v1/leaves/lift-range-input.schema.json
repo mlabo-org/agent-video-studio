@@ -1,0 +1,38 @@
+{
+  "$id": "agent-video-studio/lift-range-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/lift_range.",
+  "properties": {
+    "confirm": {
+      "type": "boolean"
+    },
+    "endSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "includeLinkedCompanions": {
+      "type": "boolean"
+    },
+    "startSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "trackIds": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "startSeconds",
+    "endSeconds"
+  ],
+  "title": "Lift Range input",
+  "type": "object"
+}

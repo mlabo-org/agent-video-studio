@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/ripple-delete-clip-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/ripple_delete_clip.",
+  "properties": {
+    "clipId": {
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "clipId"
+  ],
+  "title": "Ripple Delete Clip input",
+  "type": "object"
+}

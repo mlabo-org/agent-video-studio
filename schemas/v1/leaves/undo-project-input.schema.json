@@ -1,0 +1,14 @@
+{
+  "$id": "agent-video-studio/undo-project-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/undo_project.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "title": "Undo Project input",
+  "type": "object"
+}

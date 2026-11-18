@@ -1,0 +1,8 @@
+{
+  "$id": "agent-video-studio/list-tracks-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exact arguments accepted by agent_video_studio/list_tracks.",
+  "properties": {},
+  "title": "List Tracks input",
+  "type": "object"
+}

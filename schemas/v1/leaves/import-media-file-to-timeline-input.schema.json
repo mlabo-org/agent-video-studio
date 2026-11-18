@@ -1,0 +1,230 @@
+{
+  "$id": "agent-video-studio/import-media-file-to-timeline-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/import_media_file_to_timeline.",
+  "properties": {
+    "clipDuration": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "clipDurationSeconds": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "clipName": {
+      "type": "string"
+    },
+    "duration": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "durationSeconds": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "editMode": {
+      "enum": [
+        "strict",
+        "insert",
+        "overwrite"
+      ],
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "linkedAudioTargetTrackId": {
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/properties/properties/properties/metadata"
+    },
+    "name": {
+      "type": "string"
+    },
+    "properties": {
+      "additionalProperties": false,
+      "properties": {
+        "captionStyle": {
+          "additionalProperties": false,
+          "properties": {
+            "background": {
+              "type": "string"
+            },
+            "color": {
+              "type": "string"
+            },
+            "fontSize": {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            "placement": {
+              "enum": [
+                "lower-third",
+                "center",
+                "title",
+                "subtitle"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "crop": {
+          "additionalProperties": false,
+          "properties": {
+            "bottom": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "left": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "right": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "top": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "required": [
+            "left",
+            "right",
+            "top",
+            "bottom"
+          ],
+          "type": "object"
+        },
+        "fadeInSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fadeOutSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "items": {
+                  "$ref": "#/properties/properties/properties/metadata/additionalProperties"
+                },
+                "type": "array"
+              },
+              {
+                "additionalProperties": {
+                  "$ref": "#/properties/properties/properties/metadata/additionalProperties"
+                },
+                "type": "object"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        "muted": {
+          "type": "boolean"
+        },
+        "opacity": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "position": {
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "type": "object"
+        },
+        "rotationDegrees": {
+          "type": "number"
+        },
+        "scale": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "speed": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "volumeDb": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "sourcePath": {
+      "type": "string"
+    },
+    "sourceStart": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "sourceStartSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "startSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "targetTrackId": {
+      "type": "string"
+    },
+    "transcript": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "video",
+        "audio",
+        "image"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "sourcePath",
+    "targetTrackId",
+    "startSeconds"
+  ],
+  "title": "Import Media File To Timeline input",
+  "type": "object"
+}

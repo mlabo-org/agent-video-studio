@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/get-project-library-settings-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/get_project_library_settings call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "get_project_library_settings"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "get_project_library_settings output",
+  "type": "object"
+}

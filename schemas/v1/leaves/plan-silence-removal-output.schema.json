@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/plan-silence-removal-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/plan_silence_removal call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "plan_silence_removal"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "plan_silence_removal output",
+  "type": "object"
+}

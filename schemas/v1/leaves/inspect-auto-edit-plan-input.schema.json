@@ -1,0 +1,568 @@
+{
+  "$id": "agent-video-studio/inspect-auto-edit-plan-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/inspect_auto_edit_plan.",
+  "properties": {
+    "plan": {
+      "additionalProperties": false,
+      "description": "Inline versioned plan supplied by the host agent (Codex or Claude Code) or another plugin.",
+      "properties": {
+        "metadata": {
+          "$ref": "#/properties/plan/properties/operations/items/anyOf/1/properties/clips/items/properties/properties/properties/metadata"
+        },
+        "operations": {
+          "description": "Operations executed sequentially; each timestamp refers to the timeline state immediately before that operation.",
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "endSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "includeLinkedCompanions": {
+                    "type": "boolean"
+                  },
+                  "operationId": {
+                    "description": "Stable unique operation id within this plan.",
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sourceRangeIds": {
+                    "items": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "startSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "trackIds": {
+                    "items": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "type": {
+                    "const": "extract_range",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "startSeconds",
+                  "endSeconds"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "clips": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "durationSeconds": {
+                          "exclusiveMinimum": 0,
+                          "type": "number"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "linkedAudio": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "properties": {
+                              "$ref": "#/properties/plan/properties/operations/items/anyOf/1/properties/clips/items/properties/properties"
+                            },
+                            "trackId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "trackId"
+                          ],
+                          "type": "object"
+                        },
+                        "mediaId": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "properties": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "captionStyle": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "background": {
+                                  "type": "string"
+                                },
+                                "color": {
+                                  "type": "string"
+                                },
+                                "fontSize": {
+                                  "exclusiveMinimum": 0,
+                                  "type": "number"
+                                },
+                                "placement": {
+                                  "enum": [
+                                    "lower-third",
+                                    "center",
+                                    "title",
+                                    "subtitle"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "crop": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "bottom": {
+                                  "maximum": 1,
+                                  "minimum": 0,
+                                  "type": "number"
+                                },
+                                "left": {
+                                  "maximum": 1,
+                                  "minimum": 0,
+                                  "type": "number"
+                                },
+                                "right": {
+                                  "maximum": 1,
+                                  "minimum": 0,
+                                  "type": "number"
+                                },
+                                "top": {
+                                  "maximum": 1,
+                                  "minimum": 0,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ],
+                              "type": "object"
+                            },
+                            "fadeInSeconds": {
+                              "minimum": 0,
+                              "type": "number"
+                            },
+                            "fadeOutSeconds": {
+                              "minimum": 0,
+                              "type": "number"
+                            },
+                            "metadata": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "null"
+                                  },
+                                  {
+                                    "items": {
+                                      "$ref": "#/properties/plan/properties/operations/items/anyOf/1/properties/clips/items/properties/properties/properties/metadata/additionalProperties"
+                                    },
+                                    "type": "array"
+                                  },
+                                  {
+                                    "additionalProperties": {
+                                      "$ref": "#/properties/plan/properties/operations/items/anyOf/1/properties/clips/items/properties/properties/properties/metadata/additionalProperties"
+                                    },
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "type": "object"
+                            },
+                            "muted": {
+                              "type": "boolean"
+                            },
+                            "opacity": {
+                              "maximum": 1,
+                              "minimum": 0,
+                              "type": "number"
+                            },
+                            "position": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "x",
+                                "y"
+                              ],
+                              "type": "object"
+                            },
+                            "rotationDegrees": {
+                              "type": "number"
+                            },
+                            "scale": {
+                              "exclusiveMinimum": 0,
+                              "type": "number"
+                            },
+                            "speed": {
+                              "exclusiveMinimum": 0,
+                              "type": "number"
+                            },
+                            "volumeDb": {
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "sourceStartSeconds": {
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "startSeconds": {
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "trackId": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "trackId",
+                        "mediaId",
+                        "startSeconds"
+                      ],
+                      "type": "object"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "editMode": {
+                    "enum": [
+                      "strict",
+                      "insert",
+                      "overwrite"
+                    ],
+                    "type": "string"
+                  },
+                  "operationId": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/0/properties/operationId"
+                  },
+                  "type": {
+                    "const": "add_clips",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "clips"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "clipId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "editMode": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/1/properties/editMode"
+                  },
+                  "operationId": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/0/properties/operationId"
+                  },
+                  "startSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "trackId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "type": {
+                    "const": "move_clip",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "clipId"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "clipId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "durationSeconds": {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  "endSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "operationId": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/0/properties/operationId"
+                  },
+                  "sourceStartSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "startSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "type": {
+                    "const": "trim_clip",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "clipId"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "clipId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "fadeInSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "fadeOutSeconds": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "muted": {
+                    "type": "boolean"
+                  },
+                  "operationId": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/0/properties/operationId"
+                  },
+                  "type": {
+                    "const": "set_clip_audio",
+                    "type": "string"
+                  },
+                  "volumeDb": {
+                    "maximum": 24,
+                    "minimum": -96,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "clipId"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "muted": {
+                    "type": "boolean"
+                  },
+                  "operationId": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/0/properties/operationId"
+                  },
+                  "trackId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "type": {
+                    "const": "set_track_muted",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "trackId",
+                  "muted"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "captions": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "durationSeconds": {
+                          "exclusiveMinimum": 0,
+                          "type": "number"
+                        },
+                        "endSeconds": {
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "language": {
+                          "type": "string"
+                        },
+                        "properties": {
+                          "$ref": "#/properties/plan/properties/operations/items/anyOf/1/properties/clips/items/properties/properties"
+                        },
+                        "speaker": {
+                          "type": "string"
+                        },
+                        "startSeconds": {
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "trackId": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "text",
+                        "startSeconds"
+                      ],
+                      "type": "object"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "operationId": {
+                    "$ref": "#/properties/plan/properties/operations/items/anyOf/0/properties/operationId"
+                  },
+                  "trackId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "type": {
+                    "const": "add_captions",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "type",
+                  "captions"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "planId": {
+          "description": "Stable plan id chosen by the producer.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "producer": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "description": "Stable producer plugin or host agent (Codex or Claude Code) workflow id.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "jobId": {
+              "description": "Optional upstream job id for provenance.",
+              "minLength": 1,
+              "type": "string"
+            },
+            "version": {
+              "description": "Optional producer version.",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "schema": {
+          "const": "avs.auto-edit-plan.v1",
+          "description": "Versioned AVS agent-to-agent edit-plan schema.",
+          "type": "string"
+        },
+        "target": {
+          "additionalProperties": false,
+          "properties": {
+            "baseRevision": {
+              "description": "Exact AVS session revision used to build this plan.",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "projectId": {
+              "description": "Exact AVS project id inspected by the producer.",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "projectId",
+            "baseRevision"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema",
+        "planId",
+        "producer",
+        "target",
+        "operations"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "plan"
+  ],
+  "title": "Inspect Auto Edit Plan input",
+  "type": "object"
+}

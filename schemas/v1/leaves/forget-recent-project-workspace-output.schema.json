@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/forget-recent-project-workspace-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/forget_recent_project_workspace call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "forget_recent_project_workspace"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "forget_recent_project_workspace output",
+  "type": "object"
+}

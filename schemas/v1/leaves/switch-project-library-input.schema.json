@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/switch-project-library-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/switch_project_library.",
+  "properties": {
+    "expectedSettingsRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "targetPath": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "targetPath"
+  ],
+  "title": "Switch Project Library input",
+  "type": "object"
+}

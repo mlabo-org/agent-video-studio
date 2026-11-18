@@ -1,0 +1,14 @@
+{
+  "$id": "agent-video-studio/redo-project-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/redo_project.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "title": "Redo Project input",
+  "type": "object"
+}

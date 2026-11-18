@@ -1,0 +1,8 @@
+{
+  "$id": "agent-video-studio/get-project-io-status-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exact arguments accepted by agent_video_studio/get_project_io_status.",
+  "properties": {},
+  "title": "Get Project I/O Status input",
+  "type": "object"
+}

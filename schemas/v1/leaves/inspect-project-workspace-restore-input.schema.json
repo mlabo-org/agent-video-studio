@@ -1,0 +1,16 @@
+{
+  "$id": "agent-video-studio/inspect-project-workspace-restore-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/inspect_project_workspace_restore.",
+  "properties": {
+    "targetPath": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "targetPath"
+  ],
+  "title": "Inspect Project Workspace Restore input",
+  "type": "object"
+}

@@ -1,0 +1,16 @@
+{
+  "$id": "agent-video-studio/cancel-render-final-export-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/cancel_render_final_export.",
+  "properties": {
+    "jobId": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "title": "Cancel Render Final Export input",
+  "type": "object"
+}

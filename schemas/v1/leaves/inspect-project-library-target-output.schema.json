@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/inspect-project-library-target-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/inspect_project_library_target call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "inspect_project_library_target"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "inspect_project_library_target output",
+  "type": "object"
+}

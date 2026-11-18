@@ -1,0 +1,8 @@
+{
+  "$id": "agent-video-studio/get-project-library-settings-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exact arguments accepted by agent_video_studio/get_project_library_settings.",
+  "properties": {},
+  "title": "Get Project Library Settings input",
+  "type": "object"
+}

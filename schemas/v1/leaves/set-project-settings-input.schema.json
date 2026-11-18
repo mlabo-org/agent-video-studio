@@ -1,0 +1,47 @@
+{
+  "$id": "agent-video-studio/set-project-settings-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/set_project_settings.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "fps": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "metadata": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "resolution": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "width": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "type": "object"
+    },
+    "sampleRate": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "title": "Set Project Settings input",
+  "type": "object"
+}

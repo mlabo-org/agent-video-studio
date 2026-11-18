@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/get-project-io-status-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/get_project_io_status call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "get_project_io_status"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "get_project_io_status output",
+  "type": "object"
+}

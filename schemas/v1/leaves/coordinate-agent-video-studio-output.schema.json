@@ -1,0 +1,1536 @@
+{
+  "$defs": {
+    "blocker": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "type": "object"
+    },
+    "clip": {
+      "additionalProperties": false,
+      "description": "Stable AVS timeline clip.",
+      "properties": {
+        "caption": {
+          "additionalProperties": false,
+          "properties": {
+            "language": {
+              "type": "string"
+            },
+            "speaker": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "type": "object"
+        },
+        "durationSeconds": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "media",
+            "caption"
+          ]
+        },
+        "mediaId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "#/$defs/clipProperties"
+        },
+        "sourceStartSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "startSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "trackId": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "trackId",
+        "kind",
+        "name",
+        "startSeconds",
+        "durationSeconds",
+        "properties"
+      ],
+      "type": "object"
+    },
+    "clipProperties": {
+      "additionalProperties": false,
+      "description": "Editable AVS clip properties.",
+      "properties": {
+        "captionStyle": {
+          "additionalProperties": false,
+          "properties": {
+            "background": {
+              "type": "string"
+            },
+            "color": {
+              "type": "string"
+            },
+            "fontSize": {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            "placement": {
+              "enum": [
+                "lower-third",
+                "center",
+                "title",
+                "subtitle"
+              ]
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "crop": {
+          "additionalProperties": false,
+          "properties": {
+            "bottom": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "left": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "right": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "top": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "required": [
+            "left",
+            "right",
+            "top",
+            "bottom"
+          ],
+          "type": "object"
+        },
+        "fadeInSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fadeOutSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "object"
+        },
+        "muted": {
+          "type": "boolean"
+        },
+        "opacity": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "position": {
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "type": "object"
+        },
+        "rotationDegrees": {
+          "type": "number"
+        },
+        "scale": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "speed": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "volumeDb": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "inspection": {
+      "additionalProperties": false,
+      "description": "Agent-readable AVS timeline inspection.",
+      "properties": {
+        "captionCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "clipCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "durationSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fps": {
+          "type": "number"
+        },
+        "issues": {
+          "items": {
+            "$ref": "#/$defs/issue"
+          },
+          "type": "array"
+        },
+        "mediaCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mediaUsage": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "clipIds": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "mediaId": {
+                "type": "string"
+              },
+              "totalDurationSeconds": {
+                "minimum": 0,
+                "type": "number"
+              }
+            },
+            "required": [
+              "mediaId",
+              "clipIds",
+              "totalDurationSeconds"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "resolution": {
+          "$ref": "#/$defs/resolution"
+        },
+        "title": {
+          "type": "string"
+        },
+        "toolCallCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "trackCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "tracks": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "clipCount": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "durationSeconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "firstStartSeconds": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "id": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "video",
+                  "audio",
+                  "caption"
+                ]
+              },
+              "lastEndSeconds": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "kind",
+              "clipCount",
+              "firstStartSeconds",
+              "lastEndSeconds",
+              "durationSeconds"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "projectId",
+        "title",
+        "fps",
+        "resolution",
+        "durationSeconds",
+        "mediaCount",
+        "trackCount",
+        "clipCount",
+        "captionCount",
+        "toolCallCount",
+        "tracks",
+        "mediaUsage",
+        "issues"
+      ],
+      "type": "object"
+    },
+    "issue": {
+      "additionalProperties": false,
+      "description": "AVS validation issue.",
+      "properties": {
+        "clipId": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "mediaId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning"
+          ]
+        },
+        "trackId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "message"
+      ],
+      "type": "object"
+    },
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "mediaAsset": {
+      "additionalProperties": false,
+      "description": "Registered AVS media asset.",
+      "properties": {
+        "durationSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "video",
+            "audio",
+            "image",
+            "sequence"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "type",
+        "durationSeconds"
+      ],
+      "type": "object"
+    },
+    "pathState": {
+      "additionalProperties": false,
+      "properties": {
+        "exists": {
+          "type": "boolean"
+        },
+        "isDirectory": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": "string"
+        },
+        "writable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "path",
+        "exists",
+        "isDirectory",
+        "writable"
+      ],
+      "type": "object"
+    },
+    "projectIoInspection": {
+      "additionalProperties": false,
+      "description": "Complete Project I/O target inspection.",
+      "properties": {
+        "blockers": {
+          "items": {
+            "$ref": "#/$defs/blocker"
+          },
+          "type": "array"
+        },
+        "dataDirectory": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/pathState"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "existingProject": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/projectSummary"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schemaVersion": {
+          "const": 1
+        },
+        "sessionExists": {
+          "type": "boolean"
+        },
+        "sessionFileName": {
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/targetState"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "target",
+        "dataDirectory",
+        "sessionFileName",
+        "sessionExists",
+        "existingProject",
+        "blockers"
+      ],
+      "type": "object"
+    },
+    "projectSummary": {
+      "additionalProperties": false,
+      "description": "Project I/O workspace summary.",
+      "properties": {
+        "clipCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mediaCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "trackCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "revision",
+        "updatedAt",
+        "mediaCount",
+        "trackCount",
+        "clipCount"
+      ],
+      "type": "object"
+    },
+    "recentList": {
+      "additionalProperties": false,
+      "properties": {
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/recentWorkspace"
+          },
+          "type": "array"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schemaVersion": {
+          "const": 1
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "revision",
+        "entries"
+      ],
+      "type": "object"
+    },
+    "recentWorkspace": {
+      "additionalProperties": false,
+      "properties": {
+        "current": {
+          "type": "boolean"
+        },
+        "dataDirectory": {
+          "type": "string"
+        },
+        "firstOpenedAt": {
+          "type": "string"
+        },
+        "lastOpenedAt": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "reachability": {
+          "enum": [
+            "available",
+            "data_directory_missing",
+            "data_directory_not_directory",
+            "session_missing",
+            "session_not_file",
+            "session_invalid",
+            "entry_invalid"
+          ]
+        },
+        "reachable": {
+          "type": "boolean"
+        },
+        "summary": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/projectSummary"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "dataDirectory",
+        "firstOpenedAt",
+        "lastOpenedAt",
+        "current",
+        "reachable",
+        "reachability",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "renderJob": {
+      "additionalProperties": false,
+      "description": "Process-local AVS final-export job snapshot.",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "cancellation": {
+          "additionalProperties": false,
+          "properties": {
+            "completedAt": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "outputPath": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "requestedAt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "requestedAt"
+          ],
+          "type": "object"
+        },
+        "completedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "error": {
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "type": "object"
+        },
+        "id": {
+          "type": "string"
+        },
+        "progress": {
+          "additionalProperties": true,
+          "properties": {
+            "durationSeconds": {
+              "type": "number"
+            },
+            "fps": {
+              "type": "number"
+            },
+            "frame": {
+              "type": "number"
+            },
+            "outTimeSeconds": {
+              "type": "number"
+            },
+            "percentage": {
+              "type": "number"
+            },
+            "phase": {
+              "const": "ffmpeg"
+            },
+            "ratio": {
+              "type": "number"
+            },
+            "speed": {
+              "type": "string"
+            },
+            "status": {
+              "enum": [
+                "running",
+                "finished"
+              ]
+            },
+            "totalSizeBytes": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "phase",
+            "status",
+            "outTimeSeconds",
+            "durationSeconds",
+            "ratio",
+            "percentage"
+          ],
+          "type": "object"
+        },
+        "result": {
+          "$ref": "#/$defs/renderResult"
+        },
+        "schemaVersion": {
+          "const": 1
+        },
+        "session": {
+          "$ref": "#/$defs/sessionReference"
+        },
+        "status": {
+          "enum": [
+            "running",
+            "cancelling",
+            "succeeded",
+            "failed",
+            "cancelled"
+          ]
+        },
+        "target": {
+          "additionalProperties": false,
+          "properties": {
+            "durationSeconds": {
+              "type": "number"
+            },
+            "outputPath": {
+              "type": "string"
+            },
+            "relativeOutputPath": {
+              "type": "string"
+            },
+            "timelineDurationSeconds": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "outputPath",
+            "relativeOutputPath",
+            "durationSeconds",
+            "timelineDurationSeconds"
+          ],
+          "type": "object"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "status",
+        "active",
+        "createdAt",
+        "updatedAt",
+        "session",
+        "target"
+      ],
+      "type": "object"
+    },
+    "renderMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "captionRendering": {
+          "additionalProperties": false,
+          "properties": {
+            "clipIds": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "drawtextAvailable": {
+              "type": "boolean"
+            },
+            "renderedClipCount": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "requestedClipCount": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "skippedClipCount": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "status": {
+              "enum": [
+                "rendered",
+                "skipped-drawtext-unavailable",
+                "none"
+              ]
+            },
+            "warning": {
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "const": "FFMPEG_DRAWTEXT_UNAVAILABLE"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "status",
+            "requestedClipCount",
+            "renderedClipCount",
+            "skippedClipCount",
+            "drawtextAvailable",
+            "clipIds"
+          ],
+          "type": "object"
+        },
+        "externalUploads": {
+          "const": false
+        },
+        "providerCalls": {
+          "const": false
+        },
+        "usedRealAudio": {
+          "type": "boolean"
+        },
+        "usedRealImage": {
+          "type": "boolean"
+        },
+        "usedRealVideo": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "usedRealVideo",
+        "usedRealImage",
+        "usedRealAudio",
+        "externalUploads",
+        "providerCalls",
+        "captionRendering"
+      ],
+      "type": "object"
+    },
+    "renderResult": {
+      "additionalProperties": false,
+      "description": "Complete local FFmpeg render result.",
+      "properties": {
+        "durationSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "externalUploads": {
+          "const": false
+        },
+        "ffmpegCommand": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/$defs/renderMetadata"
+        },
+        "mode": {
+          "enum": [
+            "local-preview",
+            "local-final-export"
+          ]
+        },
+        "outputPath": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "relativeOutputPath": {
+          "type": "string"
+        },
+        "renderer": {
+          "const": "ffmpeg-local-project-library-media"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/renderSource"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "$ref": "#/$defs/renderSummary"
+        },
+        "timelineDurationSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId",
+        "title",
+        "outputPath",
+        "relativeOutputPath",
+        "durationSeconds",
+        "timelineDurationSeconds",
+        "summary",
+        "externalUploads",
+        "mode",
+        "renderer",
+        "sources",
+        "metadata",
+        "ffmpegCommand"
+      ],
+      "type": "object"
+    },
+    "renderSource": {
+      "additionalProperties": false,
+      "properties": {
+        "absolutePath": {
+          "type": "string"
+        },
+        "clipId": {
+          "type": "string"
+        },
+        "durationSeconds": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "endSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "inputIndex": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mediaId": {
+          "type": "string"
+        },
+        "mediaType": {
+          "enum": [
+            "video",
+            "image",
+            "audio"
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "sourceDurationSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "sourceStartSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "startSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "trackId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "inputIndex",
+        "clipId",
+        "trackId",
+        "mediaId",
+        "mediaType",
+        "source",
+        "absolutePath",
+        "startSeconds",
+        "durationSeconds",
+        "endSeconds",
+        "sourceStartSeconds",
+        "sourceDurationSeconds"
+      ],
+      "type": "object"
+    },
+    "renderSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "captionClipCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "clipCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mediaClipCount": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "trackCount": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "trackCount",
+        "clipCount",
+        "mediaClipCount",
+        "captionClipCount"
+      ],
+      "type": "object"
+    },
+    "resolution": {
+      "additionalProperties": false,
+      "description": "Video resolution.",
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "type": "object"
+    },
+    "sessionReference": {
+      "additionalProperties": false,
+      "description": "Exact persisted AVS project-session revision.",
+      "properties": {
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "updatedAt": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "revision",
+        "updatedAt"
+      ],
+      "type": "object"
+    },
+    "settings": {
+      "additionalProperties": false,
+      "description": "Sanitized AVS Project Library settings.",
+      "properties": {
+        "dataDirectory": {
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schemaVersion": {
+          "const": 1
+        },
+        "source": {
+          "enum": [
+            "default",
+            "config",
+            "env"
+          ]
+        },
+        "writable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "revision",
+        "dataDirectory",
+        "source",
+        "writable"
+      ],
+      "type": "object"
+    },
+    "targetState": {
+      "additionalProperties": false,
+      "properties": {
+        "exists": {
+          "type": "boolean"
+        },
+        "input": {
+          "type": "string"
+        },
+        "isDirectory": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "writable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "input",
+        "path",
+        "exists",
+        "isDirectory",
+        "writable"
+      ],
+      "type": "object"
+    },
+    "timelineProject": {
+      "additionalProperties": false,
+      "description": "Complete persisted AVS timeline project.",
+      "properties": {
+        "fps": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "media": {
+          "items": {
+            "$ref": "#/$defs/mediaAsset"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "object"
+        },
+        "playheadSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "resolution": {
+          "$ref": "#/$defs/resolution"
+        },
+        "sampleRate": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "toolHistory": {
+          "items": {
+            "$ref": "#/$defs/toolCall"
+          },
+          "type": "array"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/track"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "fps",
+        "resolution",
+        "sampleRate",
+        "media",
+        "tracks",
+        "toolHistory"
+      ],
+      "type": "object"
+    },
+    "timelineSnapshot": {
+      "additionalProperties": false,
+      "description": "Complete current AVS timeline snapshot.",
+      "properties": {
+        "durationSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fps": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "playheadSeconds": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "resolution": {
+          "$ref": "#/$defs/resolution"
+        },
+        "sampleRate": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/track"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "projectId",
+        "title",
+        "fps",
+        "resolution",
+        "sampleRate",
+        "durationSeconds",
+        "tracks"
+      ],
+      "type": "object"
+    },
+    "toolCall": {
+      "additionalProperties": false,
+      "description": "Persisted AVS agent-tool history record.",
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "durationMs": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "error": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "input": {
+          "$ref": "#/$defs/jsonValue"
+        },
+        "output": {
+          "$ref": "#/$defs/jsonValue"
+        },
+        "status": {
+          "enum": [
+            "success",
+            "error",
+            "running"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "toolName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "toolName",
+        "status",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "track": {
+      "additionalProperties": false,
+      "description": "AVS timeline track.",
+      "properties": {
+        "clips": {
+          "items": {
+            "$ref": "#/$defs/clip"
+          },
+          "type": "array"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "video",
+            "audio",
+            "caption"
+          ]
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "muted": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "clips"
+      ],
+      "type": "object"
+    },
+    "validation": {
+      "additionalProperties": false,
+      "description": "Complete AVS timeline validation.",
+      "properties": {
+        "errors": {
+          "items": {
+            "$ref": "#/$defs/issue"
+          },
+          "type": "array"
+        },
+        "issues": {
+          "items": {
+            "$ref": "#/$defs/issue"
+          },
+          "type": "array"
+        },
+        "ok": {
+          "type": "boolean"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/$defs/issue"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ok",
+        "errors",
+        "warnings",
+        "issues"
+      ],
+      "type": "object"
+    },
+    "warning": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "agent-video-studio/coordinate-agent-video-studio-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Complete host-authored coordination record; it reports exact AVS MCP actions and results without claiming the broker or AVS server invoked another server.",
+  "properties": {
+    "actions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "arguments": {
+            "type": "object"
+          },
+          "mcpServer": {
+            "const": "agent_video_studio"
+          },
+          "tool": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mcpServer",
+          "tool",
+          "arguments"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "artifacts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "project-session",
+              "media",
+              "preview-video",
+              "final-video",
+              "plan",
+              "inspection"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "semanticType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "path",
+          "semanticType"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "results": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "session": {
+            "$ref": "#/$defs/sessionReference"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "tool": {
+            "type": "string"
+          },
+          "validation": {
+            "$ref": "#/$defs/validation"
+          }
+        },
+        "required": [
+          "tool",
+          "ok",
+          "summary"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "session": {
+      "$ref": "#/$defs/sessionReference"
+    },
+    "status": {
+      "enum": [
+        "succeeded",
+        "stopped",
+        "failed"
+      ]
+    },
+    "stopReason": {
+      "type": "string"
+    },
+    "validation": {
+      "$ref": "#/$defs/validation"
+    }
+  },
+  "required": [
+    "goal",
+    "status",
+    "actions",
+    "results",
+    "artifacts"
+  ],
+  "title": "Agent Video Studio coordinator output",
+  "type": "object"
+}

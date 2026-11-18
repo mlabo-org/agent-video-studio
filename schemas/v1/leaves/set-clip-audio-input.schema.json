@@ -1,0 +1,36 @@
+{
+  "$id": "agent-video-studio/set-clip-audio-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/set_clip_audio.",
+  "properties": {
+    "clipId": {
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "fadeInSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "fadeOutSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "muted": {
+      "type": "boolean"
+    },
+    "volumeDb": {
+      "maximum": 24,
+      "minimum": -96,
+      "type": "number"
+    }
+  },
+  "required": [
+    "clipId"
+  ],
+  "title": "Set Clip Audio input",
+  "type": "object"
+}

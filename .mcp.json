@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "agent_video_studio": {
+      "type": "stdio",
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "exec \"$HOME/.local/bin/agent-video-studio-mcp\""
+      ]
+    }
+  }
+}

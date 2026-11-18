@@ -1,0 +1,13 @@
+{
+  "$id": "agent-video-studio/get-render-final-export-status-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/get_render_final_export_status.",
+  "properties": {
+    "jobId": {
+      "type": "string"
+    }
+  },
+  "title": "Get Render Final Export Status input",
+  "type": "object"
+}

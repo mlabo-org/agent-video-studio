@@ -1,0 +1,33 @@
+{
+  "$id": "agent-video-studio/ripple-trim-clip-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/ripple_trim_clip.",
+  "properties": {
+    "atSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "clipId": {
+      "type": "string"
+    },
+    "edge": {
+      "enum": [
+        "start",
+        "end"
+      ],
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "clipId",
+    "edge",
+    "atSeconds"
+  ],
+  "title": "Ripple Trim Clip input",
+  "type": "object"
+}

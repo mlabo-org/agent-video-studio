@@ -1,0 +1,35 @@
+{
+  "$id": "agent-video-studio/trim-clip-to-time-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/trim_clip_to_time.",
+  "properties": {
+    "atSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "clipId": {
+      "type": "string"
+    },
+    "edge": {
+      "enum": [
+        "start",
+        "end"
+      ],
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trackId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "edge",
+    "atSeconds"
+  ],
+  "title": "Trim Clip To Time input",
+  "type": "object"
+}

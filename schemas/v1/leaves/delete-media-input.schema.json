@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/delete-media-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/delete_media.",
+  "properties": {
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "mediaId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "mediaId"
+  ],
+  "title": "Delete Media input",
+  "type": "object"
+}

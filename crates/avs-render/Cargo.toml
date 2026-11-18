@@ -1,0 +1,21 @@
+[package]
+name = "avs-render"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+avs-core = { path = "../avs-core" }
+serde.workspace = true
+serde_json.workspace = true
+# Rasterises caption text (ffmpeg here has no drawtext); reads the .ttc font collection.
+ab_glyph = "0.2"
+# Writes the transparent caption images that overlay places on the picture.
+png = "0.18"
+# Sends SIGTERM to a cancelled ffmpeg (std only offers SIGKILL).
+libc = "0.2"
+# Owns the generated caption images for as long as the graph lives.
+tempfile = "3"
+
+[dev-dependencies]

@@ -1,0 +1,33 @@
+{
+  "$id": "agent-video-studio/slide-clip-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/slide_clip.",
+  "properties": {
+    "clipId": {
+      "type": "string"
+    },
+    "deltaSeconds": {
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "leftClipId": {
+      "type": "string"
+    },
+    "rightClipId": {
+      "type": "string"
+    },
+    "startSeconds": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "clipId"
+  ],
+  "title": "Slide Clip input",
+  "type": "object"
+}

@@ -1,0 +1,164 @@
+[
+ {
+  "wait": 1000
+ },
+ "waitIdle",
+ {
+  "exportStart": "${ROOT}/cancelled.mp4"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "expect": {
+   "exportState": "running"
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:cancel-export"
+   }
+  }
+ },
+ {
+  "wait": 1500
+ },
+ {
+  "expect": {
+   "exportState": "failed",
+   "pathMissing": "${ROOT}/cancelled.mp4"
+  }
+ },
+ {
+  "screenshot": "60-export-cancelled"
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "project-title"
+   }
+  }
+ },
+ {
+  "key": "cmd+a"
+ },
+ {
+  "type": "\u65b0\u3057\u3044\u984c\u540d"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "viewer"
+   }
+  }
+ },
+ {
+  "expect": {
+   "revision": 14
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "clip": "clip-4"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "drag": {
+   "from": {
+    "widget": "inspector:fadein"
+   },
+   "to": {
+    "widget": "inspector:fadein",
+    "dx": 40
+   }
+  }
+ },
+ {
+  "expect": {
+   "revision": 15
+  }
+ },
+ {
+  "screenshot": "61-fade"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "library-search"
+   }
+  }
+ },
+ {
+  "type": "music"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "62-search"
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "rightClick": {
+   "target": {
+    "widget": "header:A3"
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "header-menu:delete"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "screenshot": "63-delete-track"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:confirm-delete-track"
+   }
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "expect": {
+   "trackCount": 4,
+   "clipCount": 6,
+   "revision": 16
+  }
+ },
+ {
+  "key": "cmd+z"
+ },
+ {
+  "expect": {
+   "trackCount": 5,
+   "clipCount": 7
+  }
+ },
+ {
+  "dump": "64-state"
+ }
+]

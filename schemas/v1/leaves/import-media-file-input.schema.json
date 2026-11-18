@@ -1,0 +1,79 @@
+{
+  "$id": "agent-video-studio/import-media-file-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/import_media_file.",
+  "properties": {
+    "duration": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "durationSeconds": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          },
+          {
+            "items": {
+              "$ref": "#/properties/metadata/additionalProperties"
+            },
+            "type": "array"
+          },
+          {
+            "additionalProperties": {
+              "$ref": "#/properties/metadata/additionalProperties"
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sourcePath": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "transcript": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "video",
+        "audio",
+        "image"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "sourcePath"
+  ],
+  "title": "Import Media File input",
+  "type": "object"
+}

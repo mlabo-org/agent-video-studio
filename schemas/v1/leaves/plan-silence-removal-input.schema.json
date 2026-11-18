@@ -1,0 +1,129 @@
+{
+  "$id": "agent-video-studio/plan-silence-removal-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/plan_silence_removal.",
+  "properties": {
+    "includeLinkedCompanions": {
+      "type": "boolean"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          },
+          {
+            "items": {
+              "$ref": "#/properties/metadata/additionalProperties"
+            },
+            "type": "array"
+          },
+          {
+            "additionalProperties": {
+              "$ref": "#/properties/metadata/additionalProperties"
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "minimumCutSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "planId": {
+      "description": "Stable id for the generated avs.auto-edit-plan.v1 plan.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "preserveLeadingSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "preserveTrailingSeconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "producer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable producer plugin or host agent (Codex or Claude Code) workflow id.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Optional upstream job id for provenance.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional producer version.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "silenceRanges": {
+      "description": "Externally detected silence ranges in the current pre-plan timeline coordinate space.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "endSeconds": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "id": {
+            "description": "Stable upstream analysis range id.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "startSeconds": {
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "startSeconds",
+          "endSeconds"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "trackIds": {
+      "description": "Explicit tracks to ripple; linked A/V companions are included by default.",
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "planId",
+    "producer",
+    "silenceRanges",
+    "trackIds"
+  ],
+  "title": "Plan Silence Removal input",
+  "type": "object"
+}

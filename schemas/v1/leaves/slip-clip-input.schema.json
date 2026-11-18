@@ -1,0 +1,27 @@
+{
+  "$id": "agent-video-studio/slip-clip-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/slip_clip.",
+  "properties": {
+    "clipId": {
+      "type": "string"
+    },
+    "deltaSourceSeconds": {
+      "type": "number"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "sourceStartSeconds": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "clipId"
+  ],
+  "title": "Slip Clip input",
+  "type": "object"
+}

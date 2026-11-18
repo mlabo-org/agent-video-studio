@@ -1,0 +1,24 @@
+{
+  "$id": "agent-video-studio/restore-project-workspace-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/restore_project_workspace.",
+  "properties": {
+    "confirmDataDirectory": {
+      "type": "string"
+    },
+    "expectedRecentRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "targetPath": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "targetPath",
+    "confirmDataDirectory"
+  ],
+  "title": "Restore Project Workspace input",
+  "type": "object"
+}

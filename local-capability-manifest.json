@@ -1,0 +1,2236 @@
+{
+  "capabilities": [
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return the current local project session timeline.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/get-timeline-input.schema.json",
+        "schemaId": "agent-video-studio/get-timeline-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "get-timeline",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/get-timeline-output.schema.json",
+        "schemaId": "agent-video-studio/get-timeline-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "get_timeline"
+      },
+      "title": "Get Timeline"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return the current local project session tracks.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/list-tracks-input.schema.json",
+        "schemaId": "agent-video-studio/list-tracks-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "list-tracks",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/list-tracks-output.schema.json",
+        "schemaId": "agent-video-studio/list-tracks-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "list_tracks"
+      },
+      "title": "List Tracks"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return the current local project session media library.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/get-media-input.schema.json",
+        "schemaId": "agent-video-studio/get-media-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "get-media",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/get-media-output.schema.json",
+        "schemaId": "agent-video-studio/get-media-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "get_media"
+      },
+      "title": "Get Media"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return stable clip IDs that overlap a timeline range, optionally including linked embedded A/V companions.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/collect-clips-in-range-input.schema.json",
+        "schemaId": "agent-video-studio/collect-clips-in-range-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "collect-clips-in-range",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/collect-clips-in-range-output.schema.json",
+        "schemaId": "agent-video-studio/collect-clips-in-range-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "collect_clips_in_range"
+      },
+      "title": "Collect Clips In Range"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return the current project session revision, updated timestamp, undo/redo depth, and the most recent activity entries (edits made by agents and the editor).",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/get-project-session-status-input.schema.json",
+        "schemaId": "agent-video-studio/get-project-session-status-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "get-project-session-status",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/get-project-session-status-output.schema.json",
+        "schemaId": "agent-video-studio/get-project-session-status-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "get_project_session_status"
+      },
+      "title": "Get Project Session Status"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return an agent-readable inspection summary for the current local project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/inspect-timeline-input.schema.json",
+        "schemaId": "agent-video-studio/inspect-timeline-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "inspect-timeline",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/inspect-timeline-output.schema.json",
+        "schemaId": "agent-video-studio/inspect-timeline-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "inspect_timeline"
+      },
+      "title": "Inspect Timeline"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return validation errors and warnings for the current local project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/validate-timeline-input.schema.json",
+        "schemaId": "agent-video-studio/validate-timeline-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "validate-timeline",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/validate-timeline-output.schema.json",
+        "schemaId": "agent-video-studio/validate-timeline-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "validate_timeline"
+      },
+      "title": "Validate Timeline"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [],
+      "description": "Build and dry-run an avs.auto-edit-plan.v1 from externally detected silence ranges for the host agent (Codex or Claude Code) or other plugins. Returns the complete inline plan, stable planHash, projected operation results, and validation without analyzing audio, mutating the project, or writing files. Ranges are converted to descending extract_range operations so source timeline coordinates remain stable.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/plan-silence-removal-input.schema.json",
+        "schemaId": "agent-video-studio/plan-silence-removal-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "plan-silence-removal",
+      "outputPorts": [
+        {
+          "name": "auto-edit-plan",
+          "required": false,
+          "schemaId": "avs.auto-edit-plan.v1",
+          "semanticType": "avs/auto-edit-plan"
+        }
+      ],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/plan-silence-removal-output.schema.json",
+        "schemaId": "agent-video-studio/plan-silence-removal-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "plan_silence_removal"
+      },
+      "title": "Plan Silence Removal"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [],
+      "description": "Validate and dry-run an inline avs.auto-edit-plan.v1 from the host agent (Codex or Claude Code) or another plugin against its exact projectId and baseRevision. Returns a canonical SHA-256 planHash, per-operation tool outputs, projected timeline inspection, and validation without mutation.",
+      "executionClass": "server_stateful",
+      "inputPorts": [
+        {
+          "name": "auto-edit-plan",
+          "required": false,
+          "schemaId": "avs.auto-edit-plan.v1",
+          "semanticType": "avs/auto-edit-plan"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/inspect-auto-edit-plan-input.schema.json",
+        "schemaId": "agent-video-studio/inspect-auto-edit-plan-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "inspect-auto-edit-plan",
+      "outputPorts": [
+        {
+          "name": "plan-inspection",
+          "required": false,
+          "schemaId": "agent-video-studio/auto-edit-plan-inspection/v1",
+          "semanticType": "avs/auto-edit-plan-inspection"
+        }
+      ],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/inspect-auto-edit-plan-output.schema.json",
+        "schemaId": "agent-video-studio/inspect-auto-edit-plan-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "inspect_auto_edit_plan"
+      },
+      "title": "Inspect Auto Edit Plan"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Atomically apply the exact inspected avs.auto-edit-plan.v1 as one AVS project-session revision and one undo unit. A plan step may be any AVS timeline edit tool ({operationId, type: <tool name>, ...arguments}). Requires confirm: true, the exact expectedPlanHash, and expectedRevision; rejects stale projects, changed plans, invalid operations, and invalid projected timelines with structured errors.",
+      "executionClass": "server_stateful",
+      "inputPorts": [
+        {
+          "name": "plan-inspection",
+          "required": false,
+          "schemaId": "agent-video-studio/auto-edit-plan-inspection/v1",
+          "semanticType": "avs/auto-edit-plan-inspection"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/apply-auto-edit-plan-input.schema.json",
+        "schemaId": "agent-video-studio/apply-auto-edit-plan-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "apply-auto-edit-plan",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/apply-auto-edit-plan-output.schema.json",
+        "schemaId": "agent-video-studio/apply-auto-edit-plan-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "apply_auto_edit_plan"
+      },
+      "title": "Apply Auto Edit Plan"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return the active local project library settings without leaking settings or session file paths.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/get-project-library-settings-input.schema.json",
+        "schemaId": "agent-video-studio/get-project-library-settings-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "get-project-library-settings",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/get-project-library-settings-output.schema.json",
+        "schemaId": "agent-video-studio/get-project-library-settings-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "get_project_library_settings"
+      },
+      "title": "Get Project Library Settings"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return the active Project I/O status, current settings, and current project summary.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/get-project-io-status-input.schema.json",
+        "schemaId": "agent-video-studio/get-project-io-status-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "get-project-io-status",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/get-project-io-status-output.schema.json",
+        "schemaId": "agent-video-studio/get-project-io-status-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "get_project_io_status"
+      },
+      "title": "Get Project I/O Status"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return recent Project I/O workspaces with reachability and project summaries, without leaking settings or session file paths.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/list-recent-project-workspaces-input.schema.json",
+        "schemaId": "agent-video-studio/list-recent-project-workspaces-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "list-recent-project-workspaces",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/list-recent-project-workspaces-output.schema.json",
+        "schemaId": "agent-video-studio/list-recent-project-workspaces-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "list_recent_project_workspaces"
+      },
+      "title": "List Recent Project Workspaces"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "description": "Forget one recent Project I/O workspace entry without deleting project data.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/forget-recent-project-workspace-input.schema.json",
+        "schemaId": "agent-video-studio/forget-recent-project-workspace-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "forget-recent-project-workspace",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/forget-recent-project-workspace-output.schema.json",
+        "schemaId": "agent-video-studio/forget-recent-project-workspace-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "forget_recent_project_workspace"
+      },
+      "title": "Forget Recent Project Workspace"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Inspect the exact local Project I/O target supplied by the caller."
+        }
+      ],
+      "description": "Inspect a local project library target for agent-readable blockers before create or switch operations.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/inspect-project-library-target-input.schema.json",
+        "schemaId": "agent-video-studio/inspect-project-library-target-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "inspect-project-library-target",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/inspect-project-library-target-output.schema.json",
+        "schemaId": "agent-video-studio/inspect-project-library-target-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "inspect_project_library_target"
+      },
+      "title": "Inspect Project Library Target"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Inspect the exact local Project I/O target supplied by the caller."
+        }
+      ],
+      "description": "Inspect whether a Project I/O workspace can be safely deleted and return the required confirmation data.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/inspect-project-workspace-delete-input.schema.json",
+        "schemaId": "agent-video-studio/inspect-project-workspace-delete-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "inspect-project-workspace-delete",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/inspect-project-workspace-delete-output.schema.json",
+        "schemaId": "agent-video-studio/inspect-project-workspace-delete-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "inspect_project_workspace_delete"
+      },
+      "title": "Inspect Project Workspace Delete"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Inspect the exact local Project I/O target supplied by the caller."
+        }
+      ],
+      "description": "Inspect whether a .deleted Project I/O workspace can be safely restored to its original non-active data directory.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/inspect-project-workspace-restore-input.schema.json",
+        "schemaId": "agent-video-studio/inspect-project-workspace-restore-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "inspect-project-workspace-restore",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/inspect-project-workspace-restore-output.schema.json",
+        "schemaId": "agent-video-studio/inspect-project-workspace-restore-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "inspect_project_workspace_restore"
+      },
+      "title": "Inspect Project Workspace Restore"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "description": "Create a new empty project-session.json in a Project Library target and make that library active.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/create-project-session-input.schema.json",
+        "schemaId": "agent-video-studio/create-project-session-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "create-project-session",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/create-project-session-output.schema.json",
+        "schemaId": "agent-video-studio/create-project-session-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "create_project_session"
+      },
+      "title": "Create Project Session"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "description": "Switch the active Project Library to a target that already contains project-session.json.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/switch-project-library-input.schema.json",
+        "schemaId": "agent-video-studio/switch-project-library-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "switch-project-library",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/switch-project-library-output.schema.json",
+        "schemaId": "agent-video-studio/switch-project-library-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "switch_project_library"
+      },
+      "title": "Switch Project Library"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "reversible_workspace_delete",
+          "reason": "Rename the exact inspected non-current AVS data directory to its reversible .deleted destination."
+        }
+      ],
+      "description": "Safely delete a non-current Project I/O workspace by renaming its app-owned data directory to a reversible .deleted path.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-project-workspace-input.schema.json",
+        "schemaId": "agent-video-studio/delete-project-workspace-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-project-workspace",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-project-workspace-output.schema.json",
+        "schemaId": "agent-video-studio/delete-project-workspace-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_project_workspace"
+      },
+      "title": "Delete Project Workspace"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "description": "Restore a Project I/O workspace from its derived .deleted path without activating it.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/restore-project-workspace-input.schema.json",
+        "schemaId": "agent-video-studio/restore-project-workspace-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "restore-project-workspace",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/restore-project-workspace-output.schema.json",
+        "schemaId": "agent-video-studio/restore-project-workspace-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "restore_project_workspace"
+      },
+      "title": "Restore Project Workspace"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "description": "Set the local project data directory after validating the absolute filesystem path and revision.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-project-library-settings-input.schema.json",
+        "schemaId": "agent-video-studio/set-project-library-settings-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-project-library-settings",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-project-library-settings-output.schema.json",
+        "schemaId": "agent-video-studio/set-project-library-settings-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_project_library_settings"
+      },
+      "title": "Set Project Library Settings"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_io_write",
+          "reason": "Persist the requested Project Library, recent-workspace, settings, or restore change."
+        }
+      ],
+      "description": "Reset the local project data directory to the default after validating the settings revision.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/reset-project-library-settings-input.schema.json",
+        "schemaId": "agent-video-studio/reset-project-library-settings-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "reset-project-library-settings",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/reset-project-library-settings-output.schema.json",
+        "schemaId": "agent-video-studio/reset-project-library-settings-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "reset_project_library_settings"
+      },
+      "title": "Reset Project Library Settings"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Search the current local project session media library.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/search-media-input.schema.json",
+        "schemaId": "agent-video-studio/search-media-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "search-media",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/search-media-output.schema.json",
+        "schemaId": "agent-video-studio/search-media-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "search_media"
+      },
+      "title": "Search Media"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Register an already-local or same-origin served media asset in the current local project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/register-media-input.schema.json",
+        "schemaId": "agent-video-studio/register-media-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "register-media",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/register-media-output.schema.json",
+        "schemaId": "agent-video-studio/register-media-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "register_media"
+      },
+      "title": "Register Media"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "description": "Copy an absolute local media file into the active project library and register it in the current session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [
+        {
+          "name": "local-media",
+          "required": false,
+          "schemaId": "agent-video-studio/local-media-file/v1",
+          "semanticType": "media/local-file"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/import-media-file-input.schema.json",
+        "schemaId": "agent-video-studio/import-media-file-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "import-media-file",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/import-media-file-output.schema.json",
+        "schemaId": "agent-video-studio/import-media-file-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "import_media_file"
+      },
+      "title": "Import Media File"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "description": "Copy an absolute local media file into the active project library, register it, and place it on the timeline. Set editMode to insert to fit gaps and push later clips right, or overwrite to replace overlapping timeline range.",
+      "executionClass": "server_stateful",
+      "inputPorts": [
+        {
+          "name": "local-media",
+          "required": false,
+          "schemaId": "agent-video-studio/local-media-file/v1",
+          "semanticType": "media/local-file"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/import-media-file-to-timeline-input.schema.json",
+        "schemaId": "agent-video-studio/import-media-file-to-timeline-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "import-media-file-to-timeline",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/import-media-file-to-timeline-output.schema.json",
+        "schemaId": "agent-video-studio/import-media-file-to-timeline-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "import_media_file_to_timeline"
+      },
+      "title": "Import Media File To Timeline"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "description": "Import a local CodexVideo handoff manifest into the active AVS project session for requests like 動画を手動編集できる形に by copying local assets into the project library, ensuring tracks, placing clips/captions, and returning agent-readable ID mappings.",
+      "executionClass": "server_stateful",
+      "inputPorts": [
+        {
+          "name": "codexvideo-handoff",
+          "required": false,
+          "schemaId": "avs.codexvideo-handoff.v1",
+          "semanticType": "avs/codexvideo-handoff"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/import-handoff-manifest-input.schema.json",
+        "schemaId": "agent-video-studio/import-handoff-manifest-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "import-handoff-manifest",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/import-handoff-manifest-output.schema.json",
+        "schemaId": "agent-video-studio/import-handoff-manifest-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "import_handoff_manifest"
+      },
+      "title": "Import Handoff Manifest"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_filesystem_read",
+          "reason": "Read the caller-selected local media or handoff manifest and its referenced local assets."
+        },
+        {
+          "authority": "local_project_write",
+          "reason": "Copy assets into the active AVS Project Library and persist the resulting session revision."
+        }
+      ],
+      "description": "Alias for import_handoff_manifest. Accepts a local CodexVideo avs.codexvideo-handoff.v1 manifest path and imports it into the active AVS project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [
+        {
+          "name": "codexvideo-handoff",
+          "required": false,
+          "schemaId": "avs.codexvideo-handoff.v1",
+          "semanticType": "avs/codexvideo-handoff"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/import-codexvideo-job-input.schema.json",
+        "schemaId": "agent-video-studio/import-codexvideo-job-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "import-codexvideo-job",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/import-codexvideo-job-output.schema.json",
+        "schemaId": "agent-video-studio/import-codexvideo-job-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "import_codexvideo_job"
+      },
+      "title": "Import CodexVideo Job"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete an unused media asset from the current local project session media library.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-media-input.schema.json",
+        "schemaId": "agent-video-studio/delete-media-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-media",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-media-output.schema.json",
+        "schemaId": "agent-video-studio/delete-media-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_media"
+      },
+      "title": "Delete Media"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Add one or more clips to the current local project session timeline. Set editMode to insert to fit gaps and push later clips right, or overwrite to replace overlapping timeline range.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/add-clips-input.schema.json",
+        "schemaId": "agent-video-studio/add-clips-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "add-clips",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/add-clips-output.schema.json",
+        "schemaId": "agent-video-studio/add-clips-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "add_clips"
+      },
+      "title": "Add Clips"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Add an empty timeline track to the current local project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/add-track-input.schema.json",
+        "schemaId": "agent-video-studio/add-track-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "add-track",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/add-track-output.schema.json",
+        "schemaId": "agent-video-studio/add-track-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "add_track"
+      },
+      "title": "Add Track"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete a clip from the current local project session timeline.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-clip-input.schema.json",
+        "schemaId": "agent-video-studio/delete-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-clip-output.schema.json",
+        "schemaId": "agent-video-studio/delete-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_clip"
+      },
+      "title": "Delete Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete multiple clips in one operation, expanding linked embedded A/V companions once. Requires confirm: true.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-clips-input.schema.json",
+        "schemaId": "agent-video-studio/delete-clips-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-clips",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-clips-output.schema.json",
+        "schemaId": "agent-video-studio/delete-clips-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_clips"
+      },
+      "title": "Delete Clips"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Remove material inside [startSeconds,endSeconds) from affected tracks while preserving the timeline gap. Linked embedded A/V companions are included atomically. Requires confirm: true.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/lift-range-input.schema.json",
+        "schemaId": "agent-video-studio/lift-range-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "lift-range",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/lift-range-output.schema.json",
+        "schemaId": "agent-video-studio/lift-range-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "lift_range"
+      },
+      "title": "Lift Range"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Remove material inside [startSeconds,endSeconds) from affected tracks and shift later affected clips left by the range duration. Linked embedded A/V companions are included atomically. Requires confirm: true.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/extract-range-input.schema.json",
+        "schemaId": "agent-video-studio/extract-range-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "extract-range",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/extract-range-output.schema.json",
+        "schemaId": "agent-video-studio/extract-range-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "extract_range"
+      },
+      "title": "Extract Range"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete a clip and close the resulting gap on its track, keeping linked embedded audio aligned.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/ripple-delete-clip-input.schema.json",
+        "schemaId": "agent-video-studio/ripple-delete-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "ripple-delete-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/ripple-delete-clip-output.schema.json",
+        "schemaId": "agent-video-studio/ripple-delete-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "ripple_delete_clip"
+      },
+      "title": "Ripple Delete Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Close the gap at a timeline time on a track and move later linked clips with the shifted clips.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/close-gap-at-time-input.schema.json",
+        "schemaId": "agent-video-studio/close-gap-at-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "close-gap-at-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/close-gap-at-time-output.schema.json",
+        "schemaId": "agent-video-studio/close-gap-at-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "close_gap_at_time"
+      },
+      "title": "Close Gap At Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete a timeline track. Non-empty tracks require deleteClips: true to remove their timeline clips too.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-track-input.schema.json",
+        "schemaId": "agent-video-studio/delete-track-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-track",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-track-output.schema.json",
+        "schemaId": "agent-video-studio/delete-track-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_track"
+      },
+      "title": "Delete Track"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Move an existing timeline track before or after another track of the same kind.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/reorder-track-input.schema.json",
+        "schemaId": "agent-video-studio/reorder-track-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "reorder-track",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/reorder-track-output.schema.json",
+        "schemaId": "agent-video-studio/reorder-track-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "reorder_track"
+      },
+      "title": "Reorder Track"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Move a clip to a new track and/or start time. Set editMode to insert to fit cut gaps and push later clips right, or overwrite to clear the destination range without rippling. Accepts legacy startTime or startSeconds.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/move-clip-input.schema.json",
+        "schemaId": "agent-video-studio/move-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "move-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/move-clip-output.schema.json",
+        "schemaId": "agent-video-studio/move-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "move_clip"
+      },
+      "title": "Move Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Move multiple clips together by deltaSeconds (or so the earliest starts at startSeconds), keeping linked embedded A/V companions aligned. editMode insert opens room on each track; overwrite clears exactly the range each moved clip lands on.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/move-clips-input.schema.json",
+        "schemaId": "agent-video-studio/move-clips-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "move-clips",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/move-clips-output.schema.json",
+        "schemaId": "agent-video-studio/move-clips-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "move_clips"
+      },
+      "title": "Move Clips"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Trim a clip using timeline start, end, duration, and/or source start seconds.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/trim-clip-input.schema.json",
+        "schemaId": "agent-video-studio/trim-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "trim-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/trim-clip-output.schema.json",
+        "schemaId": "agent-video-studio/trim-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "trim_clip"
+      },
+      "title": "Trim Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Trim a clip edge at a timeline time and shift downstream clips from the old clip end, keeping linked embedded A/V companions synchronized.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/ripple-trim-clip-input.schema.json",
+        "schemaId": "agent-video-studio/ripple-trim-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "ripple-trim-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/ripple-trim-clip-output.schema.json",
+        "schemaId": "agent-video-studio/ripple-trim-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "ripple_trim_clip"
+      },
+      "title": "Ripple Trim Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Shift a temporal media clip's source window without changing its timeline start or duration. Linked embedded A/V companions are updated atomically.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/slip-clip-input.schema.json",
+        "schemaId": "agent-video-studio/slip-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "slip-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/slip-clip-output.schema.json",
+        "schemaId": "agent-video-studio/slip-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "slip_clip"
+      },
+      "title": "Slip Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Move one clip between exact adjacent neighbors while trimming those neighbors so the combined timeline span stays unchanged.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/slide-clip-input.schema.json",
+        "schemaId": "agent-video-studio/slide-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "slide-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/slide-clip-output.schema.json",
+        "schemaId": "agent-video-studio/slide-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "slide_clip"
+      },
+      "title": "Slide Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Move the edit point between two exactly adjacent clips on the same track while preserving their combined timeline span.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/roll-edit-input.schema.json",
+        "schemaId": "agent-video-studio/roll-edit-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "roll-edit",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/roll-edit-output.schema.json",
+        "schemaId": "agent-video-studio/roll-edit-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "roll_edit"
+      },
+      "title": "Roll Edit"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Trim a clip start or end edge to an explicit playhead/timeline time.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/trim-clip-to-time-input.schema.json",
+        "schemaId": "agent-video-studio/trim-clip-to-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "trim-clip-to-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/trim-clip-to-time-output.schema.json",
+        "schemaId": "agent-video-studio/trim-clip-to-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "trim_clip_to_time"
+      },
+      "title": "Trim Clip To Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Trim multiple explicit clips to a playhead/timeline time, expanding linked embedded A/V companions.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/trim-clips-to-time-input.schema.json",
+        "schemaId": "agent-video-studio/trim-clips-to-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "trim-clips-to-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/trim-clips-to-time-output.schema.json",
+        "schemaId": "agent-video-studio/trim-clips-to-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "trim_clips_to_time"
+      },
+      "title": "Trim Clips To Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Delete the left side of a selected clip, or the clip on a selected track, up to a playhead/timeline time.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-left-at-time-input.schema.json",
+        "schemaId": "agent-video-studio/delete-left-at-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-left-at-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-left-at-time-output.schema.json",
+        "schemaId": "agent-video-studio/delete-left-at-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_left_at_time"
+      },
+      "title": "Delete Left At Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete the left side of multiple explicit clips to a playhead/timeline time. Requires confirm: true.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-clips-left-at-time-input.schema.json",
+        "schemaId": "agent-video-studio/delete-clips-left-at-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-clips-left-at-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-clips-left-at-time-output.schema.json",
+        "schemaId": "agent-video-studio/delete-clips-left-at-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_clips_left_at_time"
+      },
+      "title": "Delete Clips Left At Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Delete the right side of a selected clip, or the clip on a selected track, from a playhead/timeline time.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-right-at-time-input.schema.json",
+        "schemaId": "agent-video-studio/delete-right-at-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-right-at-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-right-at-time-output.schema.json",
+        "schemaId": "agent-video-studio/delete-right-at-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_right_at_time"
+      },
+      "title": "Delete Right At Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        },
+        {
+          "authority": "destructive_timeline_edit",
+          "reason": "Removes or replaces timeline material as one undoable project-session revision. Tools that remove material from several clips at once (delete_clips, lift_range, extract_range, delete_clips_left_at_time, delete_clips_right_at_time) require confirm: true; expectedRevision is optional and refuses a stale edit when given."
+        }
+      ],
+      "description": "Delete the right side of multiple explicit clips from a playhead/timeline time. Requires confirm: true.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/delete-clips-right-at-time-input.schema.json",
+        "schemaId": "agent-video-studio/delete-clips-right-at-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "delete-clips-right-at-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/delete-clips-right-at-time-output.schema.json",
+        "schemaId": "agent-video-studio/delete-clips-right-at-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "delete_clips_right_at_time"
+      },
+      "title": "Delete Clips Right At Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Split an existing clip at a timeline time.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/split-clip-input.schema.json",
+        "schemaId": "agent-video-studio/split-clip-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "split-clip",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/split-clip-output.schema.json",
+        "schemaId": "agent-video-studio/split-clip-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "split_clip"
+      },
+      "title": "Split Clip"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Split every eligible clip at a playhead/timeline time on selected tracks or selected clips.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/blade-at-time-input.schema.json",
+        "schemaId": "agent-video-studio/blade-at-time-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "blade-at-time",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/blade-at-time-output.schema.json",
+        "schemaId": "agent-video-studio/blade-at-time-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "blade_at_time"
+      },
+      "title": "Blade At Time"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Update editable properties on an existing clip.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-clip-properties-input.schema.json",
+        "schemaId": "agent-video-studio/set-clip-properties-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-clip-properties",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-clip-properties-output.schema.json",
+        "schemaId": "agent-video-studio/set-clip-properties-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_clip_properties"
+      },
+      "title": "Set Clip Properties"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Update audio clip volume, mute, and fade settings.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-clip-audio-input.schema.json",
+        "schemaId": "agent-video-studio/set-clip-audio-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-clip-audio",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-clip-audio-output.schema.json",
+        "schemaId": "agent-video-studio/set-clip-audio-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_clip_audio"
+      },
+      "title": "Set Clip Audio"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Toggle a timeline track ON/OFF in the current local project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-track-muted-input.schema.json",
+        "schemaId": "agent-video-studio/set-track-muted-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-track-muted",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-track-muted-output.schema.json",
+        "schemaId": "agent-video-studio/set-track-muted-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_track_muted"
+      },
+      "title": "Set Track Muted"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the undo or redo as a project-session revision."
+        }
+      ],
+      "description": "Undo the latest project edit from the shared local project session history.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/undo-project-input.schema.json",
+        "schemaId": "agent-video-studio/undo-project-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "undo-project",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/undo-project-output.schema.json",
+        "schemaId": "agent-video-studio/undo-project-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "undo_project"
+      },
+      "title": "Undo Project"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the undo or redo as a project-session revision."
+        }
+      ],
+      "description": "Redo the latest undone project edit from the shared local project session history.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/redo-project-input.schema.json",
+        "schemaId": "agent-video-studio/redo-project-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "redo-project",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/redo-project-output.schema.json",
+        "schemaId": "agent-video-studio/redo-project-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "redo_project"
+      },
+      "title": "Redo Project"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Update the text of a caption clip in the current local project session timeline.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-caption-text-input.schema.json",
+        "schemaId": "agent-video-studio/set-caption-text-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-caption-text",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-caption-text-output.schema.json",
+        "schemaId": "agent-video-studio/set-caption-text-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_caption_text"
+      },
+      "title": "Set Caption Text"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Add caption entries to the current local project session.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/add-captions-input.schema.json",
+        "schemaId": "agent-video-studio/add-captions-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "add-captions",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/add-captions-output.schema.json",
+        "schemaId": "agent-video-studio/add-captions-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "add_captions"
+      },
+      "title": "Add Captions"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_media_process",
+          "reason": "Run the local FFmpeg renderer without network uploads or provider calls."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Write the preview or final-export .mp4 under the project library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder."
+        }
+      ],
+      "description": "Render the first durationSeconds (default 10) of the current AVS project session to a local .mp4 with the same composition as the final export, for AVSでpreview/export workflows. Default output: <library>/previews/preview.mp4.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/render-preview-input.schema.json",
+        "schemaId": "agent-video-studio/render-preview-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "render-preview",
+      "outputPorts": [
+        {
+          "name": "preview-video",
+          "required": false,
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "semanticType": "video/mp4"
+        }
+      ],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/render-preview-output.schema.json",
+        "schemaId": "agent-video-studio/render-preview-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "render_preview"
+      },
+      "title": "Render Preview"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_media_process",
+          "reason": "Run the local FFmpeg renderer without network uploads or provider calls."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Write the preview or final-export .mp4 under the project library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder."
+        }
+      ],
+      "description": "Render the whole current AVS project session to a local .mp4 and wait for it. Writes to a temporary file and replaces the output only on success. No uploads or provider calls. Default output: <library>/exports/final-export.mp4.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/render-final-export-input.schema.json",
+        "schemaId": "agent-video-studio/render-final-export-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "render-final-export",
+      "outputPorts": [
+        {
+          "name": "final-video",
+          "required": false,
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "semanticType": "video/mp4"
+        }
+      ],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/render-final-export-output.schema.json",
+        "schemaId": "agent-video-studio/render-final-export-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "render_final_export"
+      },
+      "title": "Render Final Export"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [
+        {
+          "authority": "local_media_process",
+          "reason": "Run the local FFmpeg renderer without network uploads or provider calls."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Write the preview or final-export .mp4 under the project library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder."
+        }
+      ],
+      "description": "Start a final export of the current AVS project session in the background and return its job. The job state is stored in the project library, so get_render_final_export_status and cancel_render_final_export work from any AVS process and from the editor. One export runs per library at a time. Output must be an .mp4 under the library exports/ or previews/ folder, or an imported CodexVideo job avs/exports or avs/previews folder.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/start-render-final-export-input.schema.json",
+        "schemaId": "agent-video-studio/start-render-final-export-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "start-render-final-export",
+      "outputPorts": [
+        {
+          "name": "final-video",
+          "required": false,
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "semanticType": "video/mp4"
+        }
+      ],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/start-render-final-export-output.schema.json",
+        "schemaId": "agent-video-studio/start-render-final-export-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "start_render_final_export"
+      },
+      "title": "Start Render Final Export"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [],
+      "description": "Return a final export job (state, progress 0-1, output path, error) by jobId, or the most recent job of the active library when jobId is omitted.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/get-render-final-export-status-input.schema.json",
+        "schemaId": "agent-video-studio/get-render-final-export-status-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "get-render-final-export-status",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/get-render-final-export-status-output.schema.json",
+        "schemaId": "agent-video-studio/get-render-final-export-status-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "get_render_final_export_status"
+      },
+      "title": "Get Render Final Export Status"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_process_control",
+          "reason": "Set the cancel flag of an AVS final-export job stored in the project library; the exporting process stops ffmpeg."
+        },
+        {
+          "authority": "local_filesystem_write",
+          "reason": "Remove the temporary partial render file. An output file that existed before the export is never touched."
+        }
+      ],
+      "description": "Ask a running final export job to stop (by jobId, or the running job when omitted). An output file that existed before the export is left untouched.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/cancel-render-final-export-input.schema.json",
+        "schemaId": "agent-video-studio/cancel-render-final-export-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "cancel-render-final-export",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/cancel-render-final-export-output.schema.json",
+        "schemaId": "agent-video-studio/cancel-render-final-export-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "cancel_render_final_export"
+      },
+      "title": "Cancel Render Final Export"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Change the project title, fps, resolution, sample rate, or project metadata keys (a null value removes a key) as one undoable revision.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-project-settings-input.schema.json",
+        "schemaId": "agent-video-studio/set-project-settings-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-project-settings",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-project-settings-output.schema.json",
+        "schemaId": "agent-video-studio/set-project-settings-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_project_settings"
+      },
+      "title": "Set Project Settings"
+    },
+    {
+      "artifactRoots": [],
+      "authorityRequests": [
+        {
+          "authority": "local_project_write",
+          "reason": "Persist the requested AVS timeline mutation as a project-session revision."
+        }
+      ],
+      "description": "Rename a timeline track and/or lock or unlock it. A locked track refuses every clip edit with TRACK_LOCKED until it is unlocked.",
+      "executionClass": "server_stateful",
+      "inputPorts": [],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/set-track-properties-input.schema.json",
+        "schemaId": "agent-video-studio/set-track-properties-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "set-track-properties",
+      "outputPorts": [],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/set-track-properties-output.schema.json",
+        "schemaId": "agent-video-studio/set-track-properties-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "kind": "mcp_tool",
+        "mcpServer": "agent_video_studio",
+        "tool": "set_track_properties"
+      },
+      "title": "Set Track Properties"
+    },
+    {
+      "artifactRoots": [
+        "."
+      ],
+      "authorityRequests": [],
+      "description": "Host-owned AVS workflow coordination across the exact public MCP leaves for editable CodexVideo handoff, auto-edit planning and application, timeline operations, validation, local render, and optional UI inspection.",
+      "executionClass": "host_coordinator",
+      "inputPorts": [
+        {
+          "name": "codexvideo-handoff",
+          "required": false,
+          "schemaId": "avs.codexvideo-handoff.v1",
+          "semanticType": "avs/codexvideo-handoff"
+        },
+        {
+          "name": "auto-edit-plan",
+          "required": false,
+          "schemaId": "avs.auto-edit-plan.v1",
+          "semanticType": "avs/auto-edit-plan"
+        }
+      ],
+      "inputSchema": {
+        "path": "schemas/v1/leaves/coordinate-agent-video-studio-input.schema.json",
+        "schemaId": "agent-video-studio/coordinate-agent-video-studio-input/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "leafId": "coordinate-agent-video-studio",
+      "outputPorts": [
+        {
+          "name": "plan-inspection",
+          "required": false,
+          "schemaId": "agent-video-studio/auto-edit-plan-inspection/v1",
+          "semanticType": "avs/auto-edit-plan-inspection"
+        },
+        {
+          "name": "preview-video",
+          "required": false,
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "semanticType": "video/mp4"
+        },
+        {
+          "name": "final-video",
+          "required": false,
+          "schemaId": "agent-video-studio/rendered-video/v1",
+          "semanticType": "video/mp4"
+        }
+      ],
+      "outputSchema": {
+        "path": "schemas/v1/leaves/coordinate-agent-video-studio-output.schema.json",
+        "schemaId": "agent-video-studio/coordinate-agent-video-studio-output/v1",
+        "schemaVersion": "local-capability-schema/v1"
+      },
+      "runtimeBinding": {
+        "instruction": "Coordinate the requested AVS workflow in the host agent (Codex or Claude Code). Follow the package's public Agent Video Studio coordinator contract, call only exact available agent_video_studio MCP tools, preserve returned project/session/revision/media/track/clip IDs, and report actual downstream results. Do not claim that the broker or AVS server called another server, do not perform STT/TTS/provider generation/publishing/authentication, and stop when required authority, confirmation, target binding, or exact descriptor pins are unavailable.",
+        "kind": "host_coordinator"
+      },
+      "title": "Coordinate Agent Video Studio"
+    }
+  ],
+  "descriptorVersion": "0.1.0",
+  "manifestVersion": "local-capability-manifest/v1",
+  "packageId": "agent-video-studio",
+  "packageKind": "plugin",
+  "publisher": "suzuki-makoto"
+}

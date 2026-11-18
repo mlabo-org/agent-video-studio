@@ -1,0 +1,162 @@
+{
+  "$defs": {
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "array"
+        },
+        {
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "$id": "agent-video-studio/coordinate-agent-video-studio-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Complete host-owned goal and routing context for coordinating the public AVS MCP surface.",
+  "properties": {
+    "autoEditPlan": {
+      "additionalProperties": true,
+      "description": "Complete versioned AVS auto-edit plan.",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          },
+          "type": "object"
+        },
+        "operations": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "operationId": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operationId",
+              "type"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "planId": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "producer": {
+          "additionalProperties": true,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "jobId": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "schema": {
+          "const": "avs.auto-edit-plan.v1"
+        },
+        "target": {
+          "additionalProperties": false,
+          "properties": {
+            "baseRevision": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "projectId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "projectId",
+            "baseRevision"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema",
+        "planId",
+        "producer",
+        "target",
+        "operations"
+      ],
+      "type": "object"
+    },
+    "constraints": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "goal": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "handoffManifestPath": {
+      "type": "string"
+    },
+    "outputPath": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "requestedRoute": {
+      "enum": [
+        "codexvideo-handoff",
+        "auto-edit-plan",
+        "timeline-edit",
+        "validate",
+        "preview",
+        "final-export",
+        "ui-inspection"
+      ]
+    },
+    "requireManualUi": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "goal"
+  ],
+  "title": "Agent Video Studio coordinator input",
+  "type": "object"
+}

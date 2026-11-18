@@ -1,0 +1,28 @@
+[package]
+name = "avs-app"
+version.workspace = true
+edition.workspace = true
+rust-version = "1.89"
+license.workspace = true
+
+[[bin]]
+name = "agent-video-studio"
+path = "src/main.rs"
+
+[dependencies]
+avs-core = { path = "../avs-core" }
+avs-session = { path = "../avs-session" }
+avs-render = { path = "../avs-render" }
+eframe = { version = "0.34", features = ["persistence"] }
+cpal = "0.18"
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+# Native open/save/folder dialogs.
+rfd = "0.15"
+# Writes self-test screenshots.
+png = "0.18"
+# The macOS menu bar (File, Edit, ... at the top of the screen).
+muda = { version = "0.21", default-features = false }
+# Reads whether the key press behind a menu shortcut is an auto-repeat.
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3", default-features = false, features = ["NSApplication", "NSEvent", "NSResponder"] }

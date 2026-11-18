@@ -1,0 +1,21 @@
+{
+  "$id": "agent-video-studio/set-project-library-settings-input/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Exact arguments accepted by agent_video_studio/set_project_library_settings.",
+  "properties": {
+    "dataDirectory": {
+      "type": "string"
+    },
+    "expectedRevision": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "dataDirectory",
+    "expectedRevision"
+  ],
+  "title": "Set Project Library Settings input",
+  "type": "object"
+}

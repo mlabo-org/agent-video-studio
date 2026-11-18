@@ -1,0 +1,111 @@
+[
+ {
+  "wait": 1500
+ },
+ "waitIdle",
+ {
+  "key": "shift+z"
+ },
+ {
+  "wait": 2500
+ },
+ "waitIdle",
+ {
+  "screenshot": "40-long-fit"
+ },
+ {
+  "dump": "40-fit"
+ },
+ {
+  "scroll": {
+   "target": {
+    "time": 300.0,
+    "track": "V1"
+   },
+   "dx": 0,
+   "dy": 120,
+   "modifiers": "cmd"
+  }
+ },
+ {
+  "wait": 300
+ },
+ {
+  "scroll": {
+   "target": {
+    "time": 300.0,
+    "track": "V1"
+   },
+   "dx": -400,
+   "dy": 0
+  }
+ },
+ {
+  "wait": 1500
+ },
+ {
+  "dump": "41-scrolled"
+ },
+ {
+  "screenshot": "41-long-zoomed"
+ },
+ {
+  "key": "space"
+ },
+ {
+  "wait": 2500
+ },
+ {
+  "key": "space"
+ },
+ {
+  "dump": "42-played"
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-20"
+   },
+   "to": {
+    "clip": "clip-20",
+    "dx": 120
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-20",
+    "start": 250.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-22",
+    "start": 225.0
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-19",
+    "start": 250.0
+   }
+  }
+ },
+ {
+  "screenshot": "43-long-reordered"
+ },
+ {
+  "dump": "43-dragged"
+ },
+ {
+  "expect": {
+   "noError": true
+  }
+ }
+]

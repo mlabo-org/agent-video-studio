@@ -1,0 +1,20 @@
+{
+  "$id": "agent-video-studio/list-tracks-output/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "structuredContent of a successful agent_video_studio/list_tracks call. A failed call returns {ok: false, tool, error: {code, message, details}} with isError: true instead.",
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "tool": {
+      "const": "list_tracks"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "list_tracks output",
+  "type": "object"
+}

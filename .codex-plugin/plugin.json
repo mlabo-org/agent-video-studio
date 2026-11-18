@@ -1,0 +1,56 @@
+{
+  "name": "agent-video-studio",
+  "version": "0.1.0",
+  "description": "Agent Video Studio (AVS) MCP for agent-native avs.auto-edit-plan.v1 planning, dry-run inspection, hash-bound atomic timeline application, CodexVideo handoff import, validation, preview/export, and local editor UI. Upstream plugins handle analysis or generation; AVS applies structured edits.",
+  "author": {
+    "name": "Local"
+  },
+  "keywords": [
+    "agent-video-studio",
+    "AVS",
+    "Agent Video Studio",
+    "CodexVideo",
+    "動画を手動編集できる形に",
+    "AVSでpreview/export",
+    "CodexVideo handoff",
+    "CodexVideo editable handoff",
+    "import_handoff_manifest",
+    "import_codexvideo_job",
+    "timeline edit",
+    "editable video",
+    "manual video editing",
+    "Project Library",
+    "validate_timeline",
+    "render_preview",
+    "render_final_export",
+    "avs.auto-edit-plan.v1",
+    "plan_silence_removal",
+    "inspect_auto_edit_plan",
+    "apply_auto_edit_plan",
+    "silence removal",
+    "agent-operated video editing",
+    "MCP"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Video Studio",
+    "shortDescription": "Plan, inspect, and atomically apply agent-authored AVS timeline edits through MCP",
+    "longDescription": "Use Agent Video Studio as the MCP-first editing target for the host agent (Codex or Claude Code) and other plugins. Build silence-removal plans from external analysis, inspect any inline avs.auto-edit-plan.v1 without mutation, apply the exact hash-bound plan as one revision and undo unit, import CodexVideo handoffs or generated local media, validate timelines, render previews, export locally, and open the editor UI for manual inspection. AVS does not perform STT, TTS, provider generation, publishing, or authentication.",
+    "developerName": "Local",
+    "category": "Productivity",
+    "capabilities": [
+      "MCP",
+      "Interactive",
+      "Write",
+      "Video",
+      "Automation",
+      "Validation"
+    ],
+    "defaultPrompt": [
+      "Build and inspect an AVS silence-removal plan, then apply its exact MCP plan hash after approval.",
+      "Open Agent Video Studio UI for manual timeline editing.",
+      "他プラグインの編集計画をAVS MCPで検査・適用し、preview/exportする。"
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

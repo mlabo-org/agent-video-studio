@@ -1,0 +1,17 @@
+[package]
+name = "avs-session"
+version.workspace = true
+edition.workspace = true
+# `std::fs::File::lock` (the OS advisory lock) is stable since 1.89.
+rust-version = "1.89"
+license.workspace = true
+
+[dependencies]
+avs-core = { path = "../avs-core" }
+serde.workspace = true
+serde_json.workspace = true
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+tempfile = "3"

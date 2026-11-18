@@ -1,0 +1,299 @@
+[
+ {
+  "wait": 1000
+ },
+ "waitIdle",
+ {
+  "dump": "80-start"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "lock:V1"
+   }
+  }
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V1",
+    "locked": true
+   },
+   "revision": 14
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-1"
+   },
+   "to": {
+    "clip": "clip-1",
+    "dx": 80
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "start": 0.0
+   },
+   "revision": 14
+  }
+ },
+ {
+  "screenshot": "80-locked"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "lock:V1"
+   }
+  }
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V1",
+    "locked": false
+   },
+   "revision": 15
+  }
+ },
+ {
+  "wait": 600
+ },
+ {
+  "doubleClick": {
+   "target": {
+    "widget": "name:V1"
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "key": "cmd+a"
+ },
+ {
+  "type": "\u30e1\u30a4\u30f3\u6620\u50cf"
+ },
+ {
+  "key": "enter"
+ },
+ {
+  "wait": 200
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V1",
+    "name": "\u30e1\u30a4\u30f3\u6620\u50cf"
+   },
+   "revision": 16
+  }
+ },
+ {
+  "wait": 600
+ },
+ {
+  "doubleClick": {
+   "target": {
+    "widget": "name:A1"
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "type": "x"
+ },
+ {
+  "screenshot": "81-renaming"
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "wait": 200
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "A1",
+    "name": "Audio 1"
+   },
+   "revision": 16
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "widget": "panel:timeline",
+    "edge": "top",
+    "dy": 1
+   },
+   "to": {
+    "widget": "panel:timeline",
+    "edge": "top",
+    "dy": -120
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "drag": {
+   "from": {
+    "widget": "panel:library",
+    "edge": "right",
+    "dx": -1
+   },
+   "to": {
+    "widget": "panel:library",
+    "edge": "right",
+    "dx": 70
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "drag": {
+   "from": {
+    "widget": "panel:inspector",
+    "edge": "left",
+    "dx": 1
+   },
+   "to": {
+    "widget": "panel:inspector",
+    "edge": "left",
+    "dx": -60
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "dump": "82-resized"
+ },
+ {
+  "screenshot": "82-resized"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:compact-tracks"
+   }
+  }
+ },
+ {
+  "wait": 200
+ },
+ {
+  "screenshot": "83-compact"
+ },
+ {
+  "click": {
+   "target": {
+    "widget": "button:add-video-track"
+   }
+  }
+ },
+ {
+  "expect": {
+   "track": {
+    "id": "V3",
+    "index": 0
+   }
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "clip": "clip-1"
+   }
+  }
+ },
+ {
+  "click": {
+   "target": {
+    "clip": "clip-3"
+   },
+   "modifiers": "cmd"
+  }
+ },
+ {
+  "expect": {
+   "selectedCount": 4
+  }
+ },
+ {
+  "drag": {
+   "from": {
+    "clip": "clip-1"
+   },
+   "to": {
+    "time": 5.0,
+    "track": "V3"
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-1",
+    "track": "V3",
+    "start": 0.0
+   },
+   "noError": true
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-3",
+    "track": "V3",
+    "start": 10.0
+   }
+  }
+ },
+ {
+  "expect": {
+   "clip": {
+    "id": "clip-2",
+    "track": "A1"
+   },
+   "revision": 18
+  }
+ },
+ {
+  "screenshot": "84-moved-up"
+ },
+ {
+  "key": "home"
+ },
+ {
+  "key": "escape"
+ },
+ {
+  "key": "c"
+ },
+ {
+  "expect": {
+   "selected": [
+    "clip-1",
+    "clip-2"
+   ]
+  }
+ },
+ {
+  "dump": "85-final"
+ }
+]
