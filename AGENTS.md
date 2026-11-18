@@ -57,5 +57,6 @@ If it conflicts with system instructions, developer instructions, explicit user 
 ## Documentation
 
 - Keep `README.md` aligned with the actual crates, commands, and current limitations.
+- `README.ja.md` is the Japanese translation of `README.md`. Change both in the same task so they say the same thing.
 - When a schema or tool contract changes, update `tools.json` / `contract.json`, regenerate, and update README notes or tests in the same task.
 - Do not promote exploratory notes into binding rules unless they belong in this `AGENTS.md`.
