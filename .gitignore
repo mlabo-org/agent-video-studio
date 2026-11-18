@@ -3,3 +3,19 @@ output/
 tmp/
 .DS_Store
 *.log
+
+# Media never lives in this repository (AGENTS.md, "Source Boundaries"): user
+# media, samples, and renders stay in the project library. Third-party audio or
+# video must not be redistributed from here, so these are never committed.
+# Tests generate their own fixtures in a temporary folder.
+public/sample-media/
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.flac
+*.ogg
+*.mp4
+*.mov
+*.mkv
+*.webm
