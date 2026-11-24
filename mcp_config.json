@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "agent_video_studio": {
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "exec \"$HOME/.local/bin/agent-video-studio-mcp\""
+      ],
+      "env": {
+        "AGENT_HOST": "antigravity"
+      }
+    }
+  }
+}
